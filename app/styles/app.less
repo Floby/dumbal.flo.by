@@ -1,3 +1,47 @@
 @import './theme.less';
-html {
+
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+.players {
+  h3 {
+    border-top: 0.6em solid @darkPrimaryColor;
+    background-color: @primaryColor;
+    color: @textPrimaryColor;
+    padding: 1.5em 1em 0.6em;
+    font-weight: bold;
+    font-size: 1.2em;
+    //text-shadow: lightgray 1px 1px 1px;
+  }
+
+  .player {
+    margin-top: 1em;
+    padding: 0 1em;
+    .score {
+      float: right;
+      background: lightgray;
+      border-radius: 1em;
+      padding: 0.5em;
+      color: @secondaryTextColor;
+    }
+    .name {
+      position: relative;
+      top: 0.5em;
+    }
+    .name:before {
+      content: "";
+      background: @primaryColor;
+      border-radius: 3em;
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      margin-right: .6em;
+      position: relative;
+      top: 0.05em;
+    }
+  }
 }

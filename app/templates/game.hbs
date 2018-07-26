@@ -1,0 +1,10 @@
+{{outlet}}
+<div class="players">
+  <h3>Players</h3>
+  {{#each model.players as |player|}}
+    <div class="player">
+      <strong class="name">{{player.name}}</strong>
+      <span class="score">{{player.score}}</span>
+    </div>
+  {{/each}}
+</div>
