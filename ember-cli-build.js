@@ -9,11 +9,7 @@ module.exports = function(defaults) {
         'assets/**/*',
         'ember-welcome-page/images/*'
       ]
-    },
-    'esw-cache-fallback': {
-      patterns: ['/'],
-      version: '1'
-    },
+   },
     'ember-welcome-page': {
       enabled: true
     }
