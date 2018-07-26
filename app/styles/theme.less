@@ -1,0 +1,41 @@
+@import "./palette.less";
+@inAccentColor: @textPrimaryColor;
+
+body, button {
+  font-family: Roboto, "Open Sans", Ubuntu, sans-serif
+}
+
+button, input[type=submit] {
+  background: @accentColor;
+  border: none;
+  text-transform: uppercase;
+  color: @inAccentColor;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+
+.mat-button-container {
+  font-size: 1.2em;
+  position: relative;
+  label {
+    font-size: 100%;
+    position: absolute;
+    left: 0em;
+    top: 0;
+    color: @secondaryTextColor;
+    transition: ease-out 0.2s
+  }
+  input {
+    outline: none;
+    border: none;
+    border-bottom: 1px @dividerColor solid;
+  }
+
+  input:focus + label, label.not-empty {
+    color: @primaryColor;
+    //transform: translateY(-14px) scale(0.8);
+    top: -1em;
+    font-size: 80%;
+  }
+}

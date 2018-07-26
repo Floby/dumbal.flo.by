@@ -11,7 +11,7 @@ module.exports = function(defaults) {
       ]
    },
     'ember-welcome-page': {
-      enabled: true
+      enabled: false
     }
     // Add options here
   });
