@@ -7,7 +7,7 @@ module.exports = function(/* environment, appConfig */) {
 
   return {
     name: "Dumbal League",
-    short_name: "dumbal-league",
+    short_name: "Dumbal",
     description: "",
     start_url: "/",
     display: "standalone",
