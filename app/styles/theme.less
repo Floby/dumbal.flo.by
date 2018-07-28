@@ -6,17 +6,25 @@ body, button {
   font-family: Roboto, "Open Sans", Ubuntu, sans-serif
 }
 
-button, input[type=submit] {
+button, input[type=submit], a.button {
+  text-decoration: none;
   background: @accentColor;
   border: none;
   text-transform: uppercase;
   color: @inAccentColor;
   font-weight: bold;
   padding: 0.5em 1em;
+  line-height: normal;
+
+  &[disabled] {
+    background: #bbb
+  }
 }
 
 
-.mat-button-container {
+.mat-input-container {
+  display: inline-block;
+  //margin-top: 1em;
   font-size: 1.2em;
   position: relative;
   label {
@@ -28,14 +36,19 @@ button, input[type=submit] {
     transition: ease-out 0.2s
   }
   input {
+    max-width: 100%;
     outline: none;
     border: none;
+    font-size: 90%;
+    font-weight: normal;
+    color: @primaryTextColor;
+    padding-left: 0.1em;
     border-bottom: 1px @dividerColor solid;
   }
 
   input:focus + label, label.not-empty {
     color: @primaryColor;
-    //transform: translateY(-14px) scale(0.8);
+    left: 0.1em;
     top: -1em;
     font-size: 80%;
   }

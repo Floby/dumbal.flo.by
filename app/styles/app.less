@@ -7,41 +7,65 @@ html, body {
   vertical-align: baseline;
 }
 
-.players {
-  h3 {
-    border-top: 0.6em solid @darkPrimaryColor;
-    background-color: @primaryColor;
-    color: @textPrimaryColor;
-    padding: 1.5em 1em 0.6em;
-    font-weight: bold;
-    font-size: 1.2em;
-    //text-shadow: lightgray 1px 1px 1px;
-  }
+.game.active {
+  .players {
+    overflow: auto;
+    h3 {
+      border-top: 0.6em solid @darkPrimaryColor;
+      background-color: @primaryColor;
+      color: @textPrimaryColor;
+      padding: 1.5em 1em 0.6em;
+      font-weight: bold;
+      font-size: 1.2em;
+      //text-shadow: lightgray 1px 1px 1px;
+    }
 
-  .player {
-    margin-top: 1em;
-    padding: 0 1em;
-    .score {
-      float: right;
-      background: lightgray;
-      border-radius: 1em;
-      padding: 0.5em;
-      color: @secondaryTextColor;
+    .player {
+      margin-top: 1em;
+      padding: 0 1em;
+      .score {
+        font-size: 0.8em;
+        min-width: 2em;
+        text-align: center;
+        display: inline-block;
+        background: lightgray;
+        border-radius: 2px;
+        padding: 0.5em;
+        color: @secondaryTextColor;
+        position: relative;
+        transition: .2s ease-out;
+      }
+      .name {
+        position: relative;
+      }
+      &.dumbal .name {
+        font-weight: bold;
+        color: @darkPrimaryColor;
+      }
+      a.dumbal-round {
+        float: right;
+        font-size: 0.8em;
+      }
+
+      button.counter {
+        float: right;
+        font-size: 0.8em;
+      }
     }
-    .name {
-      position: relative;
-      top: 0.5em;
+
+    .mat-input-container {
+      width: 2em;
     }
-    .name:before {
-      content: "";
-      background: @primaryColor;
-      border-radius: 3em;
-      width: 1em;
-      height: 1em;
-      display: inline-block;
-      margin-right: .6em;
-      position: relative;
-      top: 0.05em;
+
+    &.round {
+      .score {
+        width: 0;
+        min-width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        color: #ffffffff;
+      }
+
     }
   }
 }

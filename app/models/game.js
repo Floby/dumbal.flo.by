@@ -2,10 +2,10 @@ export default Ember.Object.extend({
   players: null,
   init () {
     this.set('players', [
-      Player.create({name: 'Florent'}),
-      Player.create({name: 'Maud'}),
-      Player.create({name: 'Marjo'}),
-      Player.create({name: 'Romain'}),
+      Player.create({name: 'Florent', score: 0 }),
+      Player.create({name: 'Maud', score: 45}),
+      Player.create({name: 'Marjo', score: -11}),
+      Player.create({name: 'Romain', score: 123}),
     ])
   }
 })

@@ -1,10 +1,20 @@
-{{outlet}}
-<div class="players">
-  <h3>Players</h3>
-  {{#each model.players as |player|}}
-    <div class="player">
-      <strong class="name">{{player.name}}</strong>
-      <span class="score">{{player.score}}</span>
-    </div>
-  {{/each}}
+<div class="game active">
+  <div class="players {{if isFinishingRound "round"}}">
+    <h3>OKLM dans le train</h3>
+    {{#each players as |player|}}
+      <div class="player {{if (get dumballers player.name) "dumbal"}}">
+        <span class="score">{{player.score}}</span>
+        <strong class="name">{{player.name}}</strong>
+
+        {{mat-input type="number" label="score" name=player.name}}
+        {{#unless isFinishingRound}}
+          {{#link-to 'game.round' (query-params dumbal=player.name) class="button dumbal-round"}}Dumbal !{{/link-to}}
+        {{else}}
+          <button class="counter" disabled={{get dumballers player.name}}>Contre</button>
+        {{/unless}}
+
+      </div>
+    {{/each}}
+  </div>
+  {{outlet}}
 </div>
