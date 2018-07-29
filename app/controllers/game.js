@@ -18,5 +18,5 @@ export default Controller.extend({
 
   isFinishingRound: function () {
     return this.get('router.currentRouteName') === 'game.round'
-  }.property('router.currentRouteName'),
+  }.property('router.currentRouteName')
 });

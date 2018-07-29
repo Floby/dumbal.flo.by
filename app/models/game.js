@@ -1,35 +1,54 @@
 export default Ember.Object.extend({
   players: null,
-  rounds: 0,
+  roundCount: function () {
+    const rounds = this.get('players').map((player) => {
+      return player.get('roundCount')
+    })
+    return Math.max(...rounds)
+  }.property('players.@each.roundCount'),
+
   newRoundCount: function () {
-    return this.get('rounds') + 1
-  }.property('rounds'),
+    return this.get('roundCount') + 1
+  }.property('roundCount'),
 
   init () {
     this.set('id', Math.floor(Math.random() * 100))
     this.set('players', [
-      Player.create({name: 'Florent', score: 0 }),
-      Player.create({name: 'Maud', score: 0}),
-      Player.create({name: 'Marjo', score: 0}),
-      Player.create({name: 'Romain', score: 0}),
+      Player.create({name: 'Florent'}),
+      Player.create({name: 'Maud'}),
+      Player.create({name: 'Marjo'}),
+      Player.create({name: 'Romain'}),
     ])
   },
 
   addRound (scores) {
-    this.get('players').forEach((player) => {
-      const currentScore = Number(player.get('score'))
-      const name = player.name
-      const pointsToAdd = Number(scores.get(name))
-      player.set('score', currentScore + pointsToAdd)
+    Object.entries(scores).forEach(([name, score]) => {
+      const player = this.get('players').find((player) => player.get('name') === name)
+      if (!player.get('isOut')) {
+        player.addRound(Number(score))
+      }
     })
-    this.set('rounds', this.get('rounds') + 1)
   }
 })
 
 const Player = Ember.Object.extend({
   name: null,
-  score: 0,
+  score: function () {
+    return this.get('scores').reduce((total, round) => round + total, 0)
+  }.property('scores.length'),
+
+  init () {
+    this.set('scores', [])
+  },
   isOut: function () {
     return this.get('score') >= 120
-  }.property('score')
+  }.property('score'),
+
+  roundCount: function () {
+    return this.get('scores.length')
+  }.property('scores.length'),
+
+  addRound (roundScore) {
+    this.get('scores').pushObject(roundScore)
+  }
 })

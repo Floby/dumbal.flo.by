@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="600"
+   viewBox="0 0 158.75 158.75"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-91.428571"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-138.24998)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3721"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:Confessions;letter-spacing:0px;word-spacing:0px;fill:#7b1fa2;fill-opacity:1;stroke:none;-inkscape-font-specification:Confessions;font-stretch:normal;font-variant:normal;"
+       transform="matrix(6.4339301,0,0,4.6487019,-642.54463,-423.72337)"><flowRegion
+         id="flowRegion3723"
+         style="fill:#7b1fa2;fill-opacity:1;-inkscape-font-specification:Confessions;font-family:Confessions;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"><rect
+           id="rect3725"
+           width="68.571426"
+           height="51.428577"
+           x="94.285713"
+           y="117.14286"
+           style="fill:#7b1fa2;fill-opacity:1;-inkscape-font-specification:Confessions;font-family:Confessions;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
+         id="flowPara3727">♠</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4542"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.61042428,0,0,0.61042428,715.3105,269.91217)"><flowRegion
+         id="flowRegion4544"><rect
+           id="rect4546"
+           width="768.57141"
+           height="371.42856"
+           x="-1131.4286"
+           y="-97.14286" /></flowRegion><flowPara
+         id="flowPara4548"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff4081;fill-opacity:1">Dumbal</flowPara></flowRoot>  </g>
+</svg>
