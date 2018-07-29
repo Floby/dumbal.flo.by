@@ -6,6 +6,10 @@ export default Component.extend({
   isThere: true,
   value: null,
   type: 'text',
-  name: null
+  name: null,
+
+  hasValue: function () {
+    return this.get('value') !== null
+  }.property()
 });
 

@@ -1,3 +1,16 @@
-{{input type=type id=(concat elementId '-input') name=(concat elementId '-input') value=value}}
-<label for="{{concat elementId '-input'}}" class="{{if value "not-empty"}}">{{label}}</label>
+{{input
+  type=type
+  id=(concat elementId '-input')
+  name=(concat elementId '-input')
+  min=min
+  max=max
+  value=value}}
+{{#if label}}
+  <label 
+    for="{{concat elementId '-input'}}"
+    class="{{if hasValue "not-empty"}}"
+  >
+    {{label}}
+  </label>
+{{/if}}
 <br>

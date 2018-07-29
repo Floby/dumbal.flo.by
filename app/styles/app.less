@@ -7,23 +7,29 @@ html, body {
   vertical-align: baseline;
 }
 
+.new-game-action {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.page-title {
+  border-top: 0.6em solid @darkPrimaryColor;
+  background-color: @primaryColor;
+  color: @textPrimaryColor;
+  padding: 1.5em 1em 0.6em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
 .game.active {
   .players {
     overflow: auto;
-    h3 {
-      border-top: 0.6em solid @darkPrimaryColor;
-      background-color: @primaryColor;
-      color: @textPrimaryColor;
-      padding: 1.5em 1em 0.6em;
-      font-weight: bold;
-      font-size: 1.2em;
-      //text-shadow: lightgray 1px 1px 1px;
-    }
-
     .player {
       margin-top: 1em;
       padding: 0 1em;
+      clear:  both;
       .score {
+        float:right;
         font-size: 0.8em;
         min-width: 2em;
         text-align: center;
@@ -34,6 +40,17 @@ html, body {
         color: @secondaryTextColor;
         position: relative;
         transition: .2s ease-out;
+      }
+      &.is-out {
+        .name {
+          text-decoration: line-through;
+        }
+        .score {
+          background: pink;
+        }
+        .round-score {
+          visibility: hidden;
+        }
       }
       .name {
         position: relative;
@@ -53,19 +70,30 @@ html, body {
       }
     }
 
-    .mat-input-container {
+    .round-score {
+      float: right;
+      margin-right: 1em;
       width: 2em;
+      visibility: hidden;
     }
 
     &.round {
-      .score {
-        width: 0;
-        min-width: 0;
-        padding-left: 0;
-        padding-right: 0;
-        color: #ffffffff;
+      .round-score {
+        visibility: visible;
       }
-
+      //.score {
+        //width: 0;
+        //min-width: 0;
+        //padding-left: 0;
+        //padding-right: 0;
+        //color: #ffffffff;
+      //}
     }
+  }
+
+  .dumbal-action {
+    margin-top: 1em;
+    clear: both;
+    text-align: center;
   }
 }

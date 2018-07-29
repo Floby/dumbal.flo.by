@@ -1,20 +1,26 @@
-<div class="game active">
+<form class="game active" action="#" {{action "addRound" newRoundScores on="submit"}}>
   <div class="players {{if isFinishingRound "round"}}">
-    <h3>OKLM dans le train</h3>
-    {{#each players as |player|}}
-      <div class="player {{if (get dumballers player.name) "dumbal"}}">
-        <span class="score">{{player.score}}</span>
+    <h3 class="page-title">
+      OKLM dans le train
+      {{#if isFinishingRound}}
+        <small>(manche #{{roundNumber}})</small>
+      {{/if}}
+    </h3>
+    {{#each model.players as |player|}}
+      <div class="player {{if player.isOut "is-out"}}">
+        <span class="score">{{anim-count value=player.score}}</span>
         <strong class="name">{{player.name}}</strong>
-
-        {{mat-input type="number" label="score" name=player.name}}
-        {{#unless isFinishingRound}}
-          {{#link-to 'game.round' (query-params dumbal=player.name) class="button dumbal-round"}}Dumbal !{{/link-to}}
-        {{else}}
-          <button class="counter" disabled={{get dumballers player.name}}>Contre</button>
-        {{/unless}}
-
+        {{mat-input type="number" name=player.name class="round-score" value=(get newRoundScores player.name)}}
       </div>
     {{/each}}
   </div>
+  <div class="dumbal-action">
+    {{#if isFinishingRound}}
+      <input type="submit" value="Next">
+      <!--<button {{action "addRound" newRoundScores}}>Next</button>-->
+    {{else}}
+      {{#link-to 'game.round' (query-params round=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
+    {{/if}}
+  </div>
   {{outlet}}
-</div>
+</form>
