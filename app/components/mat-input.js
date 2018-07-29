@@ -9,7 +9,8 @@ export default Component.extend({
   name: null,
 
   hasValue: function () {
-    return this.get('value') !== null
-  }.property()
+    const value = this.get('value')
+    return Boolean(value) || value === 0
+  }.property('value')
 });
 

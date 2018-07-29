@@ -97,3 +97,35 @@ html, body {
     text-align: center;
   }
 }
+
+.new-game {
+  .game-name {
+    margin: 2em 0;
+    padding: 0 1em;
+    .mat-input-container {
+      width: 100%
+    }
+  }
+
+  .player {
+    margin-bottom: 1em;
+    padding: 0 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .mat-input-container {
+      width: 80%;
+    }
+    button, input[type=submit] {
+      width: 3em;
+    }
+    .name {
+      font-weight: bold;
+    }
+  }
+
+  .new-game-action {
+    margin-top: 2em;
+  }
+}

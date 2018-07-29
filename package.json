@@ -17,6 +17,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "amator": "^1.1.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-auto-import": "^1.2.5",
@@ -48,8 +49,8 @@
     "ember-welcome-page": "^3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
-    "amator": "^1.1.0",
-    "qunit-dom": "^0.6.2"
+    "qunit-dom": "^0.6.2",
+    "uuid": "^3.3.2"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

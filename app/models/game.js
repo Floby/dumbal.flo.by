@@ -1,4 +1,5 @@
 export default Ember.Object.extend({
+  name: null,
   players: null,
   roundCount: function () {
     const rounds = this.get('players').map((player) => {
@@ -13,12 +14,20 @@ export default Ember.Object.extend({
 
   init () {
     this.set('id', Math.floor(Math.random() * 100))
+    if(!this.get('name')) {
+      this.set('name', `Partie ${this.get('id')}`)
+    }
     this.set('players', [
-      Player.create({name: 'Florent'}),
-      Player.create({name: 'Maud'}),
-      Player.create({name: 'Marjo'}),
-      Player.create({name: 'Romain'}),
+      //Player.create({name: 'Florent'}),
+      //Player.create({name: 'Maud'}),
+      //Player.create({name: 'Marjo'}),
+      //Player.create({name: 'Romain'}),
     ])
+  },
+
+  addPlayer (name) {
+    const player = Player.create({ name })
+    this.get('players').pushObject(player)
   },
 
   addRound (scores) {

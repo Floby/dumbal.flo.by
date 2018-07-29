@@ -1,0 +1,23 @@
+<h3 class="page-title">Nouvelle Partie</h3>
+<div class="new-game">
+  <div class="game-name">
+    {{mat-input label="Nom de la partie"}}
+  </div>
+
+  {{#each players as |name|}}
+    <div class="player">
+      <strong class="name">{{name}}</strong>
+      <button {{action "removePlayer" name}}>-</button>
+    </div>
+  {{/each}}
+
+  <form class="player new-player" {{action "addPlayer" newPlayerName on="submit"}}>
+    {{mat-input label="Nom du joueur" value=newPlayerName autocomplete="off"}}
+    <input type="submit" value="+">
+  </form>
+
+  <div class="new-game-action">
+    <button {{action "startNewGame"}}>Feu</button>
+  </div>
+</div>
+{{outlet}}

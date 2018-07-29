@@ -1,7 +1,7 @@
 <form class="game active" action="#" {{action "addRound" newRoundScores on="submit"}}>
   <div class="players {{if isFinishingRound "round"}}">
     <h3 class="page-title">
-      OKLM dans le train
+      {{model.name}}
       {{#if isFinishingRound}}
         <small>(manche #{{roundNumber}})</small>
       {{/if}}

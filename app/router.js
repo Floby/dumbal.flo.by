@@ -12,6 +12,7 @@ Router.map(function() {
   }, function() {
     this.route('round');
   });
+  this.route('new-game');
 });
 
 export default Router;
