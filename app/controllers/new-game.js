@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+  newGameName: null,
   newPlayerName: null,
   players: null,
   init () {

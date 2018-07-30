@@ -1,3 +1,4 @@
+import uuidv4 from 'uuid/v4';
 export default Ember.Object.extend({
   name: null,
   players: null,
@@ -13,16 +14,13 @@ export default Ember.Object.extend({
   }.property('roundCount'),
 
   init () {
-    this.set('id', Math.floor(Math.random() * 100))
+    if (!this.get('id')) {
+      this.set('id', uuidv4())
+    }
     if(!this.get('name')) {
       this.set('name', `Partie ${this.get('id')}`)
     }
-    this.set('players', [
-      //Player.create({name: 'Florent'}),
-      //Player.create({name: 'Maud'}),
-      //Player.create({name: 'Marjo'}),
-      //Player.create({name: 'Romain'}),
-    ])
+    this.set('players', [])
   },
 
   addPlayer (name) {
