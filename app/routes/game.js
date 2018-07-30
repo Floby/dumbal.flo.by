@@ -2,8 +2,8 @@ import Route from '@ember/routing/route';
 import Game from '../models/game';
 
 export default Route.extend({
-  model() {
-    return Game.create()
+  model: function (params) {
+    return Game.load(params.game_id)
   },
 
   actions: {
@@ -11,6 +11,7 @@ export default Route.extend({
       const game = this.modelFor('game')
       const id = game.get('id')
       game.addRound(scores)
+      game.save()
       this.transitionTo('game', game);
     }
   }
