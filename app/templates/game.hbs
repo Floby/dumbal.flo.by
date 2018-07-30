@@ -1,11 +1,6 @@
+{{screen-title title=model.name}}
 <form class="game active" action="#" {{action "addRound" newRoundScores on="submit"}}>
   <div class="players {{if isFinishingRound "round"}}">
-    <h3 class="page-title">
-      {{model.name}}
-      {{#if isFinishingRound}}
-        <small>(manche #{{roundNumber}})</small>
-      {{/if}}
-    </h3>
     {{#each model.players as |player|}}
       <div class="player {{if player.isOut "is-out"}}">
         <span class="score">{{anim-count value=player.score}}</span>
@@ -17,7 +12,6 @@
   <div class="dumbal-action">
     {{#if isFinishingRound}}
       <input type="submit" value="Next">
-      <!--<button {{action "addRound" newRoundScores}}>Next</button>-->
     {{else}}
       {{#link-to 'game.round' (query-params round=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
     {{/if}}

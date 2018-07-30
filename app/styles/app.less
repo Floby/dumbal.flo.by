@@ -7,18 +7,30 @@ html, body {
   vertical-align: baseline;
 }
 
-.new-game-action {
-  text-align: center;
-  margin-top: 1em;
-}
-
-.page-title {
+.screen-title {
   border-top: 0.6em solid @darkPrimaryColor;
   background-color: @primaryColor;
   color: @textPrimaryColor;
-  padding: 1.5em 1em 0.6em;
   font-weight: bold;
   font-size: 1.2em;
+  padding-bottom: 0.6em;
+  h1 {
+    margin-left: 1em;
+    margin-top: 1.5em;
+    position: relative;
+    h2 {
+      font-weight: lighter;
+      font-size: 80%;
+      position: absolute;
+      left: 0;
+      top: -1.2em;
+    }
+  }
+}
+
+.new-game-action {
+  text-align: center;
+  margin-top: 1em;
 }
 
 .game.active {

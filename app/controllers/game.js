@@ -4,17 +4,16 @@ export default Controller.extend({
   router: Ember.inject.service(),
   queryParams: ['number'],
   number: null,
-  roundNumber: function () {
-    return this.get('model.newRoundCount')
-  }.property('model.newRoundCount'),
+  newRoundScores: {},
 
-  newRoundScores: function () {
-    return Ember.Object.create(this.get('model.players').map((player) => {
+  resetNewRoundScores: function () {
+    const newRoundScores = Ember.Object.create(this.get('model.players').map((player) => {
       return player.get('name')
     }).reduce((scores, name) => {
       return Object.assign(scores, { [name]: 0 })
     }, {}))
-  }.property('roundNumber'),
+    this.set('newRoundScores', newRoundScores)
+  }.observes('model.newRoundCount'),
 
   isFinishingRound: function () {
     return this.get('router.currentRouteName') === 'game.round'
