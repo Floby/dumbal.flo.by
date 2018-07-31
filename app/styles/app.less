@@ -14,6 +14,7 @@ html, body {
   color: @textPrimaryColor;
   font-weight: bold;
   font-size: 1.2em;
+  overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -26,19 +27,56 @@ html, body {
     }
   }
   h1 {
-    min-width: 10em;
+    white-space: nowrap;
     text-shadow: #2d2d2d 1px 1px 3px;
     display: inline-block;
-    margin-left: 1em;
-    margin-top: 1.5em;
+    margin: 1.5em 1em 0em;
     padding-bottom: 0.6em;
     position: relative;
-    top: 0;
-    left: 0;
+    transition: 200ms;
     h2 {
+      position: absolute;
+      min-width: 14em;
       font-weight: lighter;
       font-size: 80%;
-      position: absolute;
+      left: 0;
+      top: -1.2em;
+      animation-name: come-to-top-as-label;
+      animation-duration: 200ms;
+      animation-timing-function: ease-in;
+    }
+
+    &.has-secondary-title {
+      animation-name: from-background-color;
+      animation-duration: 800ms;
+      h2 {
+        color: @textPrimaryColor;
+      }
+    }
+  }
+
+  @keyframes from-background-color {
+    0% {
+      color: @primaryColor;
+    }
+    20% {
+      color: @primaryColor;
+    }
+    100% {
+      color: @textPrimaryColor;
+    }
+  }
+
+  @keyframes come-to-top-as-label {
+    0% {
+      font-weight: bold;
+      font-size: 100%;
+      left: 0;
+      top: 0em;
+    }
+    100% {
+      font-weight: lighter;
+      font-size: 80%;
       left: 0;
       top: -1.2em;
     }
@@ -51,6 +89,23 @@ html, body {
 
   .fa-inverse {
     color: @primaryColor;
+  }
+
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 1.5em;
+    background-image: linear-gradient(
+      to left,
+      @primaryColor 0%,
+      @primaryColor 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    right: 0;
+    top: 0;
   }
 }
 
