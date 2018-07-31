@@ -13,11 +13,27 @@ html, body {
   color: @textPrimaryColor;
   font-weight: bold;
   font-size: 1.2em;
-  padding-bottom: 0.6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  menu {
+    margin-left: .5em;
+    padding-top: 0.3em;
+    a {
+      color: inherit;
+    }
+  }
   h1 {
+    min-width: 10em;
+    text-shadow: #2d2d2d 1px 1px 3px;
+    display: inline-block;
     margin-left: 1em;
     margin-top: 1.5em;
+    padding-bottom: 0.6em;
     position: relative;
+    top: 0;
+    left: 0;
     h2 {
       font-weight: lighter;
       font-size: 80%;
@@ -25,6 +41,15 @@ html, body {
       left: 0;
       top: -1.2em;
     }
+  }
+
+  menu + h1 {
+    margin-left: .5em;
+    text-shadow: none;
+  }
+
+  .fa-inverse {
+    color: @primaryColor;
   }
 }
 

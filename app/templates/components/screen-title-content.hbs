@@ -1,4 +1,26 @@
 <header class="screen-title">
+  {{#if hasNavigation}}
+    <menu>
+      {{#if navigationHome}}
+        <menuitem rel="home">
+          {{#link-to 'index'}}
+            {{#fa-stack as |s|}}
+              {{s.stack-2x "circle"}}
+              {{s.stack-1x "home" inverse=true}}
+            {{/fa-stack}}
+          {{/link-to}}
+        </menuitem>
+      {{/if}}
+      {{#if navigationBack}}
+      <menuitem rel="back" {{action "goBack"}}>
+          {{#fa-stack as |s|}}
+            {{s.stack-2x "circle"}}
+            {{s.stack-1x "arrow-left" inverse=true}}
+          {{/fa-stack}}
+        </menuitem>
+      {{/if}}
+    </menu>
+  {{/if}}
   <h1>
     {{primaryTitle}}
     {{#if secondaryTitle}}
