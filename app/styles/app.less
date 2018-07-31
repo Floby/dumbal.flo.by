@@ -134,6 +134,39 @@ html, body {
     clear: both;
     text-align: center;
   }
+
+  &.over {
+    .player.winner {
+      .name {
+        font-weight: bold;
+        color: @darkPrimaryColor;
+        .winner-icon {
+          animation-name: twist-in-with-opacity;
+          animation-duration: 1s;
+          animation-timing-function: ease-out;
+        }
+      }
+      .score {
+        background: white;
+        border: @darkPrimaryColor 1px solid;
+        color: @primaryColor;
+      }
+    }
+  }
+}
+
+@keyframes twist-in-with-opacity {
+  0% {
+    opacity: 0;
+    transform: rotateZ(-720deg);
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+    transform: rotateZ(0deg);
+  }
 }
 
 .new-game {

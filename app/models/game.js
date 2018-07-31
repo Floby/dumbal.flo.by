@@ -37,7 +37,7 @@ const Game = Ember.Object.extend({
   },
 
   addPlayer (name) {
-    const player = Player.create({ name })
+    const player = Player.create({ name, game: this })
     this.get('players').pushObject(player)
   },
 
@@ -65,7 +65,7 @@ const Game = Ember.Object.extend({
   updateFromPayload (serialized) {
     this.set('name', serialized.name)
     const loadedPlayers = serialized.players.map((player) => {
-      return Player.create(player)
+      return Player.create(Object.assign({ game: this }, player))
     })
     this.set('players', loadedPlayers)
   }
@@ -94,6 +94,7 @@ export default Game
 
 const Player = Ember.Object.extend({
   name: null,
+  game: null,
   scores: null,
   score: function () {
     return this.get('scores').reduce((total, round) => round + total, 0)
@@ -107,6 +108,10 @@ const Player = Ember.Object.extend({
   isOut: function () {
     return this.get('score') >= 120
   }.property('score'),
+
+  isWinner: computed('isOut', 'game.isOver', function () {
+    return this.get('game.isOver') && !this.get('isOut')
+  }),
 
   roundCount: function () {
     return this.get('scores.length')

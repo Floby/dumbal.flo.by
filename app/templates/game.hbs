@@ -1,10 +1,15 @@
 {{screen-title title=model.name navigation="home"}}
-<form class="game active" action="#" {{action "addRound" newRoundScores on="submit"}}>
+<form class="game active {{if model.isOver "over"}}" action="#" {{action "addRound" newRoundScores on="submit"}}>
   <div class="players {{if isFinishingRound "round"}}">
     {{#each model.players as |player|}}
-      <div class="player {{if player.isOut "is-out"}}">
+    <div class="player {{if player.isOut "is-out"}} {{if player.isWinner "winner"}}">
         <span class="score">{{anim-count value=player.score}}</span>
-        <strong class="name">{{player.name}}</strong>
+        <strong class="name">
+          {{player.name}} 
+          {{#if player.isWinner}}
+            {{fa-icon "star" class="winner-icon"}}
+          {{/if}}
+        </strong>
         {{mat-input type="number" name=player.name class="round-score" value=(get newRoundScores player.name)}}
       </div>
     {{/each}}
