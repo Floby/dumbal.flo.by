@@ -1,5 +1,6 @@
 import uuidv4 from 'uuid/v4';
 import store from 'store2';
+import { computed } from '@ember/object'
 
 const gameStore = store.namespace('games.v0')
 const loaded = {}
@@ -17,6 +18,13 @@ const Game = Ember.Object.extend({
   newRoundCount: function () {
     return this.get('roundCount') + 1
   }.property('roundCount'),
+
+  isOver: computed('players.@each.isOut', function () {
+    const playing = this.get('players').map((player) => {
+      return player.get('isOut') ? 0 : 1
+    }).reduce((isOutCount, isOut) => isOut + isOutCount)
+    return playing <= 1;
+  }),
 
   init () {
     if (!this.get('id')) {

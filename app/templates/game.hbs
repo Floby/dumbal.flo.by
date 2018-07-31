@@ -9,12 +9,14 @@
       </div>
     {{/each}}
   </div>
-  <div class="dumbal-action">
-    {{#if isFinishingRound}}
-      <input type="submit" value="Next">
-    {{else}}
-      {{#link-to 'game.round' (query-params round=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
-    {{/if}}
-  </div>
+  {{#unless model.isOver}}
+    <div class="dumbal-action">
+      {{#if isFinishingRound}}
+        <input type="submit" value="Next">
+      {{else}}
+        {{#link-to 'game.round' (query-params round=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
+      {{/if}}
+    </div>
+  {{/unless}}
   {{outlet}}
 </form>
