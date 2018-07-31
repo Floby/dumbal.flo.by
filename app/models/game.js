@@ -77,6 +77,11 @@ Game.load = function (gameId) {
   return game
 }
 
+Game.list = function () {
+  const keys = gameStore.keys()
+  return keys.map((key) => Game.load(key))
+}
+
 export default Game
 
 const Player = Ember.Object.extend({
