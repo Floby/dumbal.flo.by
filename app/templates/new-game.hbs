@@ -12,12 +12,12 @@
   {{/each}}
 
   <form class="player new-player" {{action "addPlayer" newPlayerName on="submit"}}>
-    {{mat-input label="Nom du joueur" value=newPlayerName autocomplete="off"}}
-    <input type="submit" value="+">
+    {{mat-input label="Nom du joueur" value=newPlayerName autocomplete="off" maxlength=18}}
+    <input type="submit" value="+" disabled={{unless newPlayerName "disabled"}}>
   </form>
 
   <div class="new-game-action">
-    <button {{action "startNewGame" newGameName players}}>Feu</button>
+    <button {{action "createGame" newGameName players}}>Feu</button>
   </div>
 </div>
 {{outlet}}
