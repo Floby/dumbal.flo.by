@@ -6,6 +6,7 @@ export default Ember.Object.extend({
   name: null,
   players: null,
   archived: false,
+  startDate: null,
   roundCount: function () {
     const rounds = this.get('players').map((player) => {
       return player.get('roundCount')
