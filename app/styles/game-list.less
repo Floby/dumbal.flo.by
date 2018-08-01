@@ -1,0 +1,66 @@
+@import './palette.less';
+
+.game-list {
+  margin: 2em 1em 0;
+
+  h4 {
+    font-weight: bold;
+  }
+
+  .games {
+    margin-top: 0.5em;
+    border-top: 1px solid @dividerColor;
+    .game {
+      overflow-y: hidden;
+      border-bottom: 1px solid @dividerColor;
+      a {
+        text-decoration: none;
+      }
+      .go-to {
+        display: flex;
+        .description {
+          padding: 0.8em 0;
+          flex-grow: 1;
+        }
+        .actions {
+          //flex-grow: 1;
+          width: 2em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+        }
+      }
+      &.archived {
+        .actions {
+          visibility: hidden;
+        }
+      }
+    }
+
+    /* Animation when archived */
+    .game {
+      .go-to {
+        position: relative;
+        right: 0;
+        opacity: 1;
+        margin-bottom: 0;
+      }
+    }
+    .game.archived {
+      .go-to {
+        @archivedTransitionDuration: 250ms;
+        transition: opacity @archivedTransitionDuration ease-in
+                  , right @archivedTransitionDuration ease-in
+                  , margin-bottom @archivedTransitionDuration ease-in-out @archivedTransitionDuration
+                  , border-width 10ms linear (@archivedTransitionDuration * 2)
+                  ;
+        right: 100%;
+        opacity: 0;
+        border: none;
+        margin-bottom: -100%;
+      }
+      border-width: 0px;;
+    }
+  }
+}

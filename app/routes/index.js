@@ -5,5 +5,11 @@ export default Route.extend({
   game: inject(),
   model () {
     return this.get('game').list()
+  },
+
+  actions: {
+    archiveGame (game) {
+      this.get('game').archiveGame(game)
+    }
   }
 });

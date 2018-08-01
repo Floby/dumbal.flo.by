@@ -5,6 +5,7 @@ import { computed } from '@ember/object'
 export default Ember.Object.extend({
   name: null,
   players: null,
+  archived: false,
   roundCount: function () {
     const rounds = this.get('players').map((player) => {
       return player.get('roundCount')

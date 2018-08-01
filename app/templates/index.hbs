@@ -3,12 +3,26 @@
   {{#link-to 'new-game' class="button"}}Nouvelle Partie{{/link-to}}
 </div>
 
-<ul class="games">
-  {{#each model as |game|}}
-    <li>
-      {{#link-to 'game' game}}
-        {{game.name}}
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ul>
+<div class="game-list">
+  {{#if model.length}}
+    <h4>Tes parties :</h4>
+    <ul class="games">
+      {{#each model as |game|}}
+      <li class="game {{if game.archived "archived"}}">
+          <div class="go-to">
+            {{#link-to 'game' game class="description"}}
+              <h5>
+                {{game.name}}
+              </h5>
+            {{/link-to}}
+            <div class="actions">
+              <span class="archive" {{action "archiveGame" game}}>
+                {{fa-icon "times-circle" size="lg"}}
+              </span>
+            </div>
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</div>

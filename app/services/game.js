@@ -35,6 +35,11 @@ export default Service.extend({
     return this.load(gameId)
   },
 
+  archiveGame (game) {
+    game.set('archived', true)
+    this.save(game);
+  },
+
   save (game) {
     const serialized = {
       name: game.get('name'),
@@ -43,7 +48,8 @@ export default Service.extend({
           name: player.get('name'),
           scores: player.get('scores')
         }
-      })
+      }),
+      archived: game.get('archived')
     }
     this.gameStore.set(game.get('id'), serialized);
     return game;
@@ -61,5 +67,6 @@ export default Service.extend({
       return Player.create(Object.assign({ game }, player))
     })
     game.set('players', loadedPlayers)
+    game.set('archived', Boolean(serialized.archived))
   }
 });
