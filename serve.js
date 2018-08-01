@@ -4,6 +4,7 @@ const express = require('express')
 const compression = require('compression')
 const morgan = require('morgan')
 const FastbookAppServer = require('fastboot-app-server')
+const Api = require('./api')
 
 const DIST_DIR = Path.resolve(__dirname, 'dist')
 const PORT = process.env.PORT || 3000
@@ -14,12 +15,21 @@ function startRegular () {
   const server = express()
   server.use(morgan('dev'))
   server.use(compression())
+
+  server.use('/api', Api())
+
   server.use(express.static(DIST_DIR))
   server.use((req, res, next) => {
     res.sendFile(Path.resolve(DIST_DIR, 'index.html'), (err) => {
       if (err) next(err)
     })
   })
+
+  server.use((error, req, res, next) => {
+    console.error(error)
+    next(error)
+  })
+
   server.listen(PORT)
 }
 function startFastboot () {
