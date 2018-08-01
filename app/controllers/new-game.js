@@ -1,5 +1,7 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import faker from 'faker';
+faker.locale = 'fr'
 
 export default Controller.extend({
   newGameName: null,
@@ -9,6 +11,7 @@ export default Controller.extend({
     this.set('players', [])
     this.set('newGameName', null)
     this.set('newPlayerName', null)
+    this.set('gameNamePlaceholder', faker.company.catchPhrase())
   },
 
   hasEnoughPlayers: computed('players.length', 'newPlayerName', function () {
@@ -36,11 +39,15 @@ export default Controller.extend({
       this.get('players').removeObject(playerName)
     },
     createGame(name, playerNames) {
-      const newPlayerName = this.get('newPlayerName') || '';
-      if (newPlayerName.trim()) {
-        this.send('startNewGame', name, playerNames.concat([newPlayerName.trim()]))
+      let newPlayerName = (this.get('newPlayerName') || '').trim();
+      let gameName = (name || '').trim()
+      if (!gameName) {
+        gameName = this.get('gameNamePlaceholder')
+      }
+      if (newPlayerName) {
+        this.send('startNewGame', gameName, playerNames.concat([newPlayerName.trim()]))
       } else {
-        this.send('startNewGame', name, playerNames)
+        this.send('startNewGame', gameName, playerNames)
       }
       this.init()
     }
