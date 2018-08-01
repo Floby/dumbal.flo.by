@@ -17,7 +17,7 @@
   </form>
 
   <div class="new-game-action">
-    <button {{action "createGame" newGameName players}}>Feu</button>
+    <button {{action "createGame" newGameName players}} disabled={{unless hasEnoughPlayers "disabled"}}>Feu</button>
   </div>
 </div>
 {{outlet}}

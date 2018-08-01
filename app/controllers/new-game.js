@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   newGameName: null,
@@ -9,6 +10,18 @@ export default Controller.extend({
     this.set('newGameName', null)
     this.set('newPlayerName', null)
   },
+
+  hasEnoughPlayers: computed('players.length', 'newPlayerName', function () {
+    const newPlayerName = (this.get('newPlayerName') || '').trim()
+    const playerCount = this.get('players.length')
+    if (playerCount > 1) {
+      return true
+    } else if (playerCount === 1) {
+      return Boolean(newPlayerName)
+    } else {
+      return false;
+    }
+  }),
 
   actions: {
     addPlayer(playerName) {
