@@ -1,8 +1,9 @@
 import Route from '@ember/routing/route';
-import Game from '../models/game';
+import { inject } from '@ember/service';
 
 export default Route.extend({
+  game: inject(),
   model () {
-    return Game.list()
+    return this.get('game').list()
   }
 });

@@ -1,12 +1,11 @@
 import Route from '@ember/routing/route';
-import Game from '../models/game';
+import { inject } from '@ember/service';
 
 export default Route.extend({
+  game: inject(),
   actions: {
     startNewGame (name, playerNames) {
-      const game = Game.create({ name })
-      playerNames.forEach((name) => game.addPlayer(name))
-      game.save()
+      const game = this.get('game').createNewGame(name, playerNames)
       this.transitionTo('game', game)
     }
   }

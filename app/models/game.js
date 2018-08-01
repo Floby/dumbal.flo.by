@@ -1,11 +1,8 @@
 import uuidv4 from 'uuid/v4';
-import store from 'store2';
 import { computed } from '@ember/object'
 
-const gameStore = store.namespace('games.v0')
-const loaded = {}
 
-const Game = Ember.Object.extend({
+export default Ember.Object.extend({
   name: null,
   players: null,
   roundCount: function () {
@@ -48,51 +45,10 @@ const Game = Ember.Object.extend({
         player.addRound(Number(score))
       }
     })
-  },
-
-  save () {
-    const serialized = {
-      name: this.get('name'),
-      players: this.get('players').map((player) => {
-        return {
-          name: player.get('name'),
-          scores: player.get('scores')
-        }
-      })
-    }
-    gameStore.set(this.get('id'), serialized);
-  },
-  updateFromPayload (serialized) {
-    this.set('name', serialized.name)
-    const loadedPlayers = serialized.players.map((player) => {
-      return Player.create(Object.assign({ game: this }, player))
-    })
-    this.set('players', loadedPlayers)
   }
 })
 
-Game.load = function (gameId) {
-  if (loaded[gameId]) {
-    return loaded[gameId]
-  }
-  const serializedGame = gameStore.get(gameId);
-  if (!serializedGame) {
-    throw Error(`Could not find Game with Id ${String(gameId)}`)
-  }
-  const game = Game.create({ id: gameId })
-  game.updateFromPayload(serializedGame)
-  loaded[gameId] = game
-  return game
-}
-
-Game.list = function () {
-  const keys = gameStore.keys()
-  return keys.map((key) => Game.load(key))
-}
-
-export default Game
-
-const Player = Ember.Object.extend({
+export const Player = Ember.Object.extend({
   name: null,
   game: null,
   scores: null,
