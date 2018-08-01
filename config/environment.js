@@ -1,4 +1,4 @@
-'use strict';
+const Version = require('../api/version.js')
 
 module.exports = function(environment) {
   let ENV = {
@@ -16,6 +16,8 @@ module.exports = function(environment) {
         Date: false
       }
     },
+
+    version: Version.get(),
 
     APP: {
       // Here you can pass flags/options to your application instance

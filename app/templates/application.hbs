@@ -2,3 +2,10 @@
 {{!-- Feel free to remove this! --}}
 {{screen-title-content}}
 {{outlet}}
+{{#if needsRefresh}}
+  <div class="refresh-action">
+    <button {{action "refreshWindow"}}>
+      Mise à jour
+    </button>
+  </div>
+{{/if}}

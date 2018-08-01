@@ -7,9 +7,9 @@ try {
   READ_VERSION = fs.readFileSync(Path.resolve(__dirname, 'version'), 'utf8')
 } catch (e) {}
 
-exports.get = async function () {
+exports.get = function () {
   if (READ_VERSION) {
-    return READ_VERSION
+    return READ_VERSION.trim()
   }
   try {
     return getGitVersion()
@@ -18,12 +18,12 @@ exports.get = async function () {
   }
 }
 
-async function getGitVersion () {
+function getGitVersion () {
   const gitDir = Path.resolve(__dirname, '../.git')
-  const headContent = await fs.readFile(Path.join(gitDir, 'HEAD'), 'utf8')
+  const headContent = fs.readFileSync(Path.join(gitDir, 'HEAD'), 'utf8')
   if (headContent.startsWith('ref: ')) {
     const refPath = headContent.replace('ref: ', '').trim()
-    const refContent = await fs.readFile(Path.join(gitDir, refPath), 'utf8')
+    const refContent = fs.readFileSync(Path.join(gitDir, refPath), 'utf8')
     return refContent.trim()
   } else {
     return headContent.trim()
