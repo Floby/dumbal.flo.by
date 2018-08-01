@@ -62,5 +62,4 @@ export default Service.extend({
     })
     game.set('players', loadedPlayers)
   }
-
 });

@@ -4,9 +4,9 @@ const express = require('express')
 const compression = require('compression')
 const morgan = require('morgan')
 const FastbookAppServer = require('fastboot-app-server')
-const Api = require('./api')
+const Api = require('./index')
 
-const DIST_DIR = Path.resolve(__dirname, 'dist')
+const DIST_DIR = Path.resolve(__dirname, '../dist')
 const PORT = process.env.PORT || 3000
 
 startRegular()
@@ -34,7 +34,7 @@ function startRegular () {
 }
 function startFastboot () {
   const server = new FastbookAppServer({
-    distPath: Path.resolve(__dirname, 'dist'),
+    distPath: DIST_DIR,
     gizp: true,
     //beforeMiddleware(app) {
       //app.use((req, res, next) => {
