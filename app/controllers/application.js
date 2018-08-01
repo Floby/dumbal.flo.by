@@ -5,9 +5,9 @@ import { computed } from '@ember/object';
 export default Controller.extend({
   versionWatcher: inject(),
   needsRefresh: computed.alias('versionWatcher.outOfDate'),
-  action: {
+  actions: {
     refreshWindow () {
-      window.refresh()
+      location.reload()
     }
   }
 });
