@@ -5,7 +5,9 @@ const fs = pify(require('fs'))
 let READ_VERSION
 try {
   READ_VERSION = fs.readFileSync(Path.resolve(__dirname, 'version'), 'utf8')
-} catch (e) {}
+} catch (e) {
+  // eslint-disable-line: no-empty
+}
 
 exports.get = function () {
   if (READ_VERSION) {

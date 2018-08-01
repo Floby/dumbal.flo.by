@@ -6,5 +6,7 @@ if (process.env.SOURCE_VERSION) {
 } else {
   try {
     fs.unlinkSync(sourceVersionPath);
-  } catch (error) {}
+  } catch (error) {
+    // eslint-disable-line: no-empty
+  }
 }

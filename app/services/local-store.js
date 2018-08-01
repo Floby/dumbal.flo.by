@@ -3,6 +3,7 @@ import store2 from 'store2'
 
 export default Service.extend({
   init () {
+    this._super(...arguments)
     const store = store2;
     Object.entries(store).forEach(([key, value]) => {
       if (typeof value === 'function') {

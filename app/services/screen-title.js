@@ -2,8 +2,13 @@ import Service from '@ember/service';
 import { computed } from '@ember/object';
 
 export default Service.extend({
-  titles: [],
-  navigations: [],
+  titles: null,
+  navigations: null,
+  init () {
+    this._super(...arguments)
+    this.set('titles', [])
+    this.set('navigations', [])
+  },
   pushTitle(title) {
     this.titles.pushObject(title)
   },
@@ -14,7 +19,7 @@ export default Service.extend({
   navigationType: computed.alias('navigations.lastObject'),
 
   primaryTitle: computed.alias('titles.lastObject'),
-  secondaryTitle: computed('titles.@each', 'titles.length', function () {
+  secondaryTitle: computed('titles.{@each,length}', function () {
     const titles = this.get('titles')
     return titles[titles.length-2]
   })

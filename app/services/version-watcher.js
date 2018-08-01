@@ -5,6 +5,7 @@ export default Service.extend({
   version: null,
   outOfDate: false,
   init () {
+    this._super(...arguments)
     const version = ENV.version
     this.set('version', version)
     let versionUrl = '/api/version'
@@ -12,8 +13,7 @@ export default Service.extend({
       versionUrl += `?last-event-id=${version}`
     }
     const eventSource = new EventSource(versionUrl)
-    eventSource.addEventListener('version', (event) => {
-      const version = event.data
+    eventSource.addEventListener('version', () => {
       this.set('outOfDate', true)
     })
   }
