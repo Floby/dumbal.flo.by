@@ -16,7 +16,7 @@ exports.get = function () {
   try {
     return getGitVersion()
   } catch (e) {
-    return Math.floor(Math.random() * 1000)
+    return process.pid
   }
 }
 
