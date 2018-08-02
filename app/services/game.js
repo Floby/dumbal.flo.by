@@ -14,7 +14,12 @@ export default Service.extend({
   },
   list () {
     const keys = this.gameStore.keys()
-    return keys.map((key) => this.load(key))
+    const games = keys.map((key) => this.load(key))
+    return games.sort((a, b) => {
+      const dateA = a.get('startDate')
+      const dateB = b.get('startDate')
+      return dateA < dateB
+    })
   },
 
   load(gameId) {
@@ -26,7 +31,7 @@ export default Service.extend({
     if (!serializedGame) {
       throw Error(`Could not find Game with Id ${String(gameId)}`)
     }
-    const game = Game.create({ id: gameId, startDate: serializedGame.date })
+    const game = Game.create({ id: gameId, startDate: serializedGame.startDate })
     this.updateGameFromPayload(game, serializedGame)
     this.loaded[gameId] = game
     return game
