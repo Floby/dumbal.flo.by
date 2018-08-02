@@ -20,6 +20,7 @@ export default Service.extend({
       let response = await fetch(versionUrl)
     } catch (error) {
       console.debug('Could not connect, tuff luck')
+      return
     }
     const { version: currentVersion } = await response.json()
     if (currentVersion !== version) {
