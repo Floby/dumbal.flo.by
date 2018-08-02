@@ -1,3 +1,4 @@
+const ms = require('ms');
 const Version = require('../api/version.js')
 
 module.exports = function(environment) {
@@ -18,6 +19,9 @@ module.exports = function(environment) {
     },
 
     version: Version.get(),
+    versionWatcher: {
+      delay: ms(process.env.UPDATE_WATCH_VERSION_RETRY || '10s')
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
