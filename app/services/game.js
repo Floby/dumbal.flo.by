@@ -18,6 +18,8 @@ export default Service.extend({
     return games.sort((a, b) => {
       const dateA = a.get('startDate')
       const dateB = b.get('startDate')
+      if (!dateA && dateB) return 1
+      if (!dateB && dateA) return -1
       return dateA < dateB
     })
   },
