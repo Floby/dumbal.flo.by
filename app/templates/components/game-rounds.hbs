@@ -1,0 +1,33 @@
+<h4 class="game-rounds-title {{unless showGameRounds 'hidden'}}" {{action "toggleShowGameRounds"}}>
+  Manches
+  <span class="deploy-toggle">
+    {{fa-icon 'angle-up'}}
+  </span>
+</h4>
+<div class="game-rounds {{unless showGameRounds 'hidden'}}">
+  <div class="rounds-container">
+    <div class="rounds">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            {{#each game.players as |player|}}
+              <th>{{player.name}}</th>
+            {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each rounds as |round|}}
+            <tr>
+              <th>{{round.roundNumber}}</th>
+              {{#each round.playerScores as |score|}}
+              <td> {{score}} </td>
+              {{/each}}
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{yield}}

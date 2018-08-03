@@ -60,13 +60,6 @@
       .round-score {
         visibility: visible;
       }
-      //.score {
-        //width: 0;
-        //min-width: 0;
-        //padding-left: 0;
-        //padding-right: 0;
-        //color: #ffffffff;
-      //}
     }
   }
 
@@ -91,6 +84,100 @@
         background: white;
         border: @darkPrimaryColor 1px solid;
         color: @primaryColor;
+      }
+    }
+  }
+}
+
+.game .game-rounds-title {
+  padding: 0 1em;
+  margin-top: 2em;
+  font-size: 0.9em;
+
+  .deploy-toggle {
+    float: right;
+    .fa {
+      transition: 200ms ease-out;
+    }
+  }
+  &.hidden .deploy-toggle .fa {
+    transform: rotateZ(-180deg);
+  }
+}
+
+.game-rounds {
+  position: relative;
+  overflow-y: hidden;
+
+  &::before {
+    content: ' ';
+    display: block;
+    height: 100%;
+    width: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(
+      to right,
+      white 0%,
+      white 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  &::after {
+    content: ' ';
+    display: block;
+    height: 100%;
+    width: 1em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(
+      to left,
+      white 0%,
+      white 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .rounds-container {
+    overflow-x: auto;
+    transition: 200ms ease-out;
+    margin-bottom: 0;
+  }
+  &.hidden .rounds-container {
+    margin-bottom: -100%;
+  }
+
+  .rounds-container > .rounds {
+    text-align: center;
+    display: table;
+    padding: 1em;
+    table {
+      font-size: 0.7em;
+      th {
+        //font-weight: bold;
+        color: @darkPrimaryColor;
+      }
+      th:first-child {
+        border-right: 1px solid #666
+      }
+      thead {
+        border-bottom: 1px solid #666;
+        th {
+          padding: 0.5em 1em;
+        }
+      }
+      tbody {
+        tr {
+          //border-bottom: 1px solid #ddd;
+          &:nth-child(even) {
+            background-color: lighten(@lightPrimaryColor, 12%);
+          }
+          td {
+            padding: 0.5em;
+          }
+        }
       }
     }
   }
