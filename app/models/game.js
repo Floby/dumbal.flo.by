@@ -44,7 +44,7 @@ export default Ember.Object.extend({
     Object.entries(scores).forEach(([name, score]) => {
       const player = this.get('players').find((player) => player.get('name') === name)
       if (!player.get('isOut')) {
-        player.addRound(Number(score))
+        player.addRound(Number(score) || 0)
       }
     })
   }

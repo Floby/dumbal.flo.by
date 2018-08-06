@@ -10,7 +10,7 @@
             {{fa-icon "star" class="winner-icon"}}
           {{/if}}
         </strong>
-        {{mat-input type="number" name=player.name class="round-score" value=(get newRoundScores player.name)}}
+        {{mat-input type="number" name=player.name class="round-score" placeholder=0 value=(get newRoundScores player.name)}}
       </div>
     {{/each}}
   </div>
@@ -19,7 +19,7 @@
       {{#if isFinishingRound}}
         <input type="submit" value="Next">
       {{else}}
-        {{#link-to 'game.round' (query-params round=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
+        {{#link-to 'game.round' (query-params number=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
       {{/if}}
     </div>
   {{/unless}}

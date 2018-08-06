@@ -10,7 +10,7 @@ export default Controller.extend({
     const newRoundScores = Ember.Object.create(this.get('model.players').map((player) => {
       return player.get('name')
     }).reduce((scores, name) => {
-      return Object.assign(scores, { [name]: 0 })
+      return Object.assign(scores, { [name]: null })
     }, {}))
     this.set('newRoundScores', newRoundScores)
   }.observes('model.newRoundCount'),
