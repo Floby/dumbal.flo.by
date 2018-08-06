@@ -209,3 +209,55 @@
   }
 }
 
+
+.dealer-mark {
+  font-size: .7em;
+  display: inline-block;
+  letter-spacing: 0;
+  word-spacing: -0.8em;
+  .outer {
+    display: inline-block;
+    background-color: white;
+    //position: relative;
+    opacity: 0;
+    transform: translate3d(4em, 0, 0);
+    animation: fade-in-from-right 2s ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 10;
+    & > span {
+      display: inline-block;
+      transform: rotate(-10deg)
+    }
+  }
+
+  .outer + .outer {
+    animation-delay: 200ms;
+    & > span {
+      transform: rotate(0)
+    }
+  }
+  .outer + .outer + .outer {
+    animation-delay: 400ms;
+    & > span {
+      transform: rotate(10deg)
+    }
+  }
+
+  @keyframes fade-in-from-right {
+    0% {
+      opacity: 0;
+      transform: translate3d(4em, 0, 0);
+    }
+    10% {
+      opacity: 0.2;
+    }
+    15% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

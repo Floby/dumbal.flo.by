@@ -25,6 +25,29 @@ export default Ember.Object.extend({
     return playing <= 1;
   }),
 
+  dealer: computed('isOver', 'roundCount', 'players.@each.scores', 'plauers.@each.isOut', function () {
+    if (this.get('isOver')) {
+      return
+    }
+    const roundCount = this.get('roundCount')
+    const lastScores = this.get('players').map((player) => {
+      return {
+        player,
+        lastScore: player.get('scores').objectAt(roundCount - 1)
+      }
+    })
+    const lastBiggestScore = lastScores.sortBy('lastScore').pop()
+    if (!lastBiggestScore.player.get('isOut')) {
+      return lastBiggestScore.player
+    }
+
+    const biggestScorePlayer = this.get('players')
+      .filterBy('isIn')
+      .sortBy('score')
+      .lastObject
+    return biggestScorePlayer
+  }),
+
   init () {
     if (!this.get('id')) {
       this.set('id', uuidv4())
@@ -73,6 +96,12 @@ export const Player = Ember.Object.extend({
   isOut: function () {
     return this.get('score') >= 120
   }.property('score'),
+
+  isDealer: computed('game.dealer', function () {
+    return this.get('game.dealer') === this
+  }),
+
+  isIn: computed.not('isOut'),
 
   isWinner: computed('isOut', 'game.isOver', function () {
     return this.get('game.isOver') && !this.get('isOut')

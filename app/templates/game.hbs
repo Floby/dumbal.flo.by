@@ -6,6 +6,9 @@
         <span class="score">{{anim-count value=player.score}}</span>
         <strong class="name">
           {{player.name}} 
+          {{#if player.isDealer}}
+            {{dealer-mark}}
+          {{/if}}
           {{#if player.isWinner}}
             {{fa-icon "star" class="winner-icon"}}
           {{/if}}
