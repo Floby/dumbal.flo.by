@@ -1,5 +1,7 @@
 
 .game.active {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; 
   .players {
     overflow: auto;
     .player {
@@ -67,6 +69,11 @@
     margin-top: 1em;
     clear: both;
     text-align: center;
+
+    & > .undo {
+      font-size: 0.6em;
+      background-color: desaturate(lighten(@accentColor, 10%), 60%);
+    }
   }
 
   &.over {

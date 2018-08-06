@@ -47,6 +47,13 @@ export default Ember.Object.extend({
         player.addRound(Number(score) || 0)
       }
     })
+  },
+  removeRound (roundNumber) {
+    Object.values(this.get('players')).forEach((player) => {
+      if (player.get('scores.length') >= roundNumber) {
+        player.get('scores').removeAt(roundNumber - 1)
+      }
+    })
   }
 })
 

@@ -27,6 +27,9 @@
 
   {{#if model.roundCount}}
   {{game-rounds game=model}}
+  <div class="dumbal-action">
+    <button class="undo" {{action "removeRound" model.roundCount}}>Annuler dernière manche</button>
+  </div>
   {{/if}}
 </form>
 {{outlet}}

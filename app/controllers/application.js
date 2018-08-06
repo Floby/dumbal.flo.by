@@ -8,6 +8,9 @@ export default Controller.extend({
   actions: {
     refreshWindow () {
       location.reload()
+    },
+    goBack () {
+      debugger
     }
   }
 });
