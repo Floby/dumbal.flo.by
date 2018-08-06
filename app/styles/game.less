@@ -70,9 +70,13 @@
     clear: both;
     text-align: center;
 
-    & > .undo {
+    .undo {
+      transition: background-color 200ms ease-out;
       font-size: 0.6em;
       background-color: desaturate(lighten(@accentColor, 10%), 60%);
+      &[disabled] {
+        .disabled-button();
+      }
     }
   }
 

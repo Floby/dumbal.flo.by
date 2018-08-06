@@ -6,6 +6,10 @@ body, button {
   font-family: Roboto, "Open Sans", Ubuntu, sans-serif
 }
 
+.disabled-button {
+  background: #bbb
+}
+
 button, input[type=submit], a.button {
   text-align: center;
   cursor: pointer;
@@ -20,9 +24,10 @@ button, input[type=submit], a.button {
   line-height: normal;
 
   &[disabled] {
-    background: #bbb
+    .disabled-button();
   }
 }
+
 
 *[data-ember-action] {
   cursor: pointer;
