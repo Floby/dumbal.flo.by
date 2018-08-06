@@ -26,7 +26,7 @@ export default Ember.Object.extend({
   }),
 
   dealer: computed('isOver', 'roundCount', 'players.@each.scores', 'plauers.@each.isOut', function () {
-    if (this.get('isOver')) {
+    if (this.get('isOver') || this.get('roundCount') === 0) {
       return
     }
     const roundCount = this.get('roundCount')
