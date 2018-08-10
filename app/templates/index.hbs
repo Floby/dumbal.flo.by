@@ -14,6 +14,7 @@
               <h5>
                 {{game.name}}
               </h5>
+              {{player-inline-list players=game.players}}
             {{/link-to}}
             <div class="actions">
               <span class="archive" {{action "archiveGame" game}}>

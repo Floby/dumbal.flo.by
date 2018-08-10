@@ -1,0 +1,3 @@
+{{#each playerDisplay as |player|}}
+<li class="player {{if player.isWinner 'winner'}} {{if player.isOut 'is-out'}}">{{player.prefix}}<span class="name">{{player.name}}</span>{{player.suffix}}</li>
+{{/each}}

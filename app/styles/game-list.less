@@ -2,6 +2,7 @@
 
 .game-list {
   margin: 2em 1em 0;
+  -webkit-tap-highlight-color: transparent; 
 
   h4 {
     font-weight: bold;
@@ -21,6 +22,26 @@
         .description {
           padding: 0.8em 0;
           flex-grow: 1;
+          .player-inline-list {
+            color: @primaryTextColor;
+            margin-top: 0.3em;
+            font-size: 0.65em;
+            .player {
+              display: inline;
+              &.is-out {
+                .name {
+                  text-decoration: line-through;
+                  opacity: 0.5;
+                }
+              }
+              &.winner {
+                .name {
+                  font-weight: bold;
+                  color: @darkPrimaryColor;
+                }
+              }
+            }
+          }
         }
         .actions {
           //flex-grow: 1;
