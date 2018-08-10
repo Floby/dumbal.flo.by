@@ -133,7 +133,7 @@ export class DumbalError extends Error {
 
 class NoNegativeScoreError extends DumbalError {
   constructor () {
-    super("C'est bizarre. Normalement il devrait y avoir au moins un score négatif")
+    super("C'est bizarre. Il devrait y avoir au moins un score négatif")
   }
 }
 

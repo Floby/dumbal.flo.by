@@ -1,0 +1,7 @@
+{{#each notifications as |notification|}}
+<div class="notification notification-{{notification.type}} {{if notification.removed 'hidden'}}">
+  <div class="content">
+    {{notification.content}}
+  </div>
+</div>
+{{/each}}

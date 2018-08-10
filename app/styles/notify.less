@@ -1,0 +1,41 @@
+.notify-container {
+  display: flex;
+  flex-direction: column-reverse;
+  position: fixed;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  font-size: 0.7em;
+
+  .notification {
+    margin: 1em 1em 0em;
+    position: relative;
+    .content {
+      position: relative;
+      padding: 1em;
+      text-align: center;
+      background: lightgray;
+      color: @secondaryTextColor;
+      border-radius: 8em;
+      animation: face-in-from-up 200ms ease-out;
+      transition: 350ms ease-out;
+    }
+    &.hidden {
+      overflow-y: hidden;
+      .content {
+        margin-bottom: -6em;
+      }
+    }
+  }
+
+  @keyframes face-in-from-up {
+    0% {
+      opacity: 0;
+      bottom: 2em;
+    }
+    100% {
+      opacity: 1;
+      bottom: 0;
+    }
+  }
+}
