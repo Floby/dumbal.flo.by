@@ -1,9 +1,9 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object'
 import { inject }  from '@ember/service'
-import ms from 'ms';
+import OnHold from '../mixins/on-hold'
 
-export default Component.extend({
+export default Component.extend(OnHold, {
   tagName: 'header',
   classNames: ['screen-title'],
   screenTitle: inject(),
@@ -19,22 +19,7 @@ export default Component.extend({
     return this.get('navigationBack')  || this.get('navigationHome')
   }),
 
-  holdTimeout: null,
-  holdDelay: '1s',
-  mouseDown () {
-    this.holdTimeout = setTimeout(() => {
-      this.hold()
-    }, ms(this.get('holdDelay')))
-  },
-
-  mouseUp () {
-    if (this.holdTimeout) {
-      clearTimeout(this.holdTimeout)
-      delete this.holdTimeout
-    }
-  },
-
-  hold () {
+  onHold () {
     const version = this.get('version')
     window.alert(`Version courante : ${version}`)
   },
