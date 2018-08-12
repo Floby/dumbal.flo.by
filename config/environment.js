@@ -20,7 +20,7 @@ module.exports = function(environment) {
 
     version: Version.get(),
     versionWatcher: {
-      delay: ms(process.env.UPDATE_WATCH_VERSION_RETRY || '10s')
+      delay: ms(process.env.UPDATE_WATCH_VERSION_RETRY || '10s')
     },
 
     APP: {

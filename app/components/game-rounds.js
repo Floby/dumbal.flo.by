@@ -5,7 +5,7 @@ export default Component.extend({
   game: null,
   showGameRounds: false,
 
-  rounds: computed('game.roundCount', 'game.players.@each.scores', function () {
+  rounds: computed('game.{roundCount,players.@each.scores}', function () {
     const roundCount = this.get('game.roundCount')
     const players = this.get('game.players')
     const rounds = []

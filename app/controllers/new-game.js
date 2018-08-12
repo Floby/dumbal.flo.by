@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed } from '@ember/object';
 import faker from 'faker';
 faker.locale = 'fr'
 
@@ -8,6 +8,7 @@ export default Controller.extend({
   newPlayerName: null,
   players: null,
   init () {
+    this._super(...arguments)
     this.set('players', [])
     this.set('newGameName', null)
     this.set('newPlayerName', null)

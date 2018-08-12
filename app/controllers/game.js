@@ -1,21 +1,29 @@
 import Controller from '@ember/controller';
+import { inject } from "@ember/service"
+import EmberObject, { computed } from "@ember/object"
 
 export default Controller.extend({
-  router: Ember.inject.service(),
+  router: inject(),
   queryParams: ['number'],
   number: null,
-  newRoundScores: {},
+  newRoundScores: null,
+
+  init () {
+    this._super(...arguments)
+    this.set('newRoundScores', {})
+    this.addObserver('model.newRoundCount', () => this.resetNewRoundScores())
+  },
 
   resetNewRoundScores: function () {
-    const newRoundScores = Ember.Object.create(this.get('model.players').map((player) => {
+    const newRoundScores = EmberObject.create(this.get('model.players').map((player) => {
       return player.get('name')
     }).reduce((scores, name) => {
       return Object.assign(scores, { [name]: null })
     }, {}))
     this.set('newRoundScores', newRoundScores)
-  }.observes('model.newRoundCount'),
+  },
 
-  isFinishingRound: function () {
+  isFinishingRound: computed('router.currentRouteName', function () {
     return this.get('router.currentRouteName') === 'game.round'
-  }.property('router.currentRouteName')
+  }),
 });

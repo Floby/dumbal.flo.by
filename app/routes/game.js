@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { inject } from '@ember/service';
 import { DumbalError } from '../models/game'
 
 export default Route.extend({

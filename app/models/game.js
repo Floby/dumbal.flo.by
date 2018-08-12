@@ -126,7 +126,7 @@ function checkHasNegativeScore (scores) {
 
 
 export class DumbalError extends CustomError {
-  constructor(message) {
+  constructor() {
     super(...arguments)
   }
 }

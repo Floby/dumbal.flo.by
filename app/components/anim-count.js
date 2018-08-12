@@ -9,9 +9,11 @@ export default Component.extend({
   init () {
     this._super(...arguments)
     this.set('displayValue', this.get('value'))
+
+    this.addObserver('value', () => this.onValueChange)
   },
 
-  observeValue: function () {
+  onValueChange: function () {
     const previousValue = this.get('displayValue')
     const nextValue = this.get('value')
     animate(
@@ -20,7 +22,7 @@ export default Component.extend({
       {
         duration: this.get('duration'),
         easing: 'easeOut',
-        step: ({ value }) => {
+        step: ({ value }) => {
           this.set('displayValue', Math.floor(value));
         },
         done: () => {
@@ -28,5 +30,5 @@ export default Component.extend({
         }
       }
     )
-  }.observes('value')
+  }
 });

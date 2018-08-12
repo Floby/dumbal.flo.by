@@ -8,7 +8,6 @@ export default Component.extend({
   positionalParams: ['title'],
 
   didRender () {
-    const title = this.get('title')
     this.get('screenTitle').pushTitle(this.get('title'))
     if (this.get('navigation')) {
       this.get('screenTitle.navigations').pushObject(this.get('navigation'))
@@ -16,7 +15,6 @@ export default Component.extend({
   },
 
   didDestroyElement () {
-    const title = this.get('title')
     this.get('screenTitle').popTitle(this.get('title'))
     if (this.get('navigation')) {
       this.get('screenTitle.navigations').popObject(this.get('navigation'))

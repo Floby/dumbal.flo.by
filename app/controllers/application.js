@@ -11,7 +11,7 @@ export default Controller.extend({
       location.reload()
     },
     goBack () {
-      debugger
+      
     }
   }
 });

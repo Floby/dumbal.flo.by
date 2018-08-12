@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object'
 import { inject }  from '@ember/service'
+import { run }  from '@ember/runloop'
 import OnHold from '../mixins/on-hold'
 
 export default Component.extend(OnHold, {
@@ -26,7 +27,7 @@ export default Component.extend(OnHold, {
 
   actions: {
     goBack () {
-      Ember.run(() => history.back())
+      run(() => history.back())
     }
   }
 });

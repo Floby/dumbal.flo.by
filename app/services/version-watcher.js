@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import ENV from 'dumbal-league/config/environment';
+import { run } from '@ember/runloop';
 
 export default Service.extend({
   version: null,
@@ -20,10 +21,10 @@ export default Service.extend({
       const { version: currentVersion } = await response.json()
       if (currentVersion !== version) {
         clearInterval(this.interval)
-        Ember.run(() => this.set('outOfDate', true))
+        run(() => this.set('outOfDate', true))
       }
     } catch (error) {
-      console.debug('Could not connect, tuff luck')
+      console.warn('Could not connect, tuff luck') // eslint-disable-line no-console
     }
   }
 });
