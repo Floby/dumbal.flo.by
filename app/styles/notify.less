@@ -17,25 +17,26 @@
       background: lightgray;
       color: @secondaryTextColor;
       border-radius: 8em;
-      animation: face-in-from-up 200ms ease-out;
-      transition: 350ms ease-out;
+      animation: fade-in-from-up 200ms ease-out;
     }
     &.hidden {
       overflow-y: hidden;
       .content {
+        transition: 350ms ease-out;
         margin-bottom: -6em;
+        transform: translate3d(0, 0, 0)
       }
     }
   }
 
-  @keyframes face-in-from-up {
+  @keyframes fade-in-from-up {
     0% {
       opacity: 0;
-      bottom: 2em;
+      transform: translate3d(0, -2em, 0)
     }
     100% {
       opacity: 1;
-      bottom: 0;
+      transform: translate3d(0, 0, 0)
     }
   }
 }

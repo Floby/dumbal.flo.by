@@ -14,10 +14,14 @@ export default Service.extend({
     })
     this.get('notifications').pushObject(notification)
     setTimeout(() => {
-      run(() => notification.set('removed', true))
-      setTimeout(() => {
-        run(() => this.get('notifications').removeObject(notification))
-      }, 1000)
+      this.expireNotification(notification)
     }, 3000)
+  },
+
+  expireNotification (notification) {
+    run(() => notification.set('removed', true))
+    setTimeout(() => {
+      run(() => this.get('notifications').removeObject(notification))
+    }, 1000)
   }
 });
