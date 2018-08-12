@@ -83,5 +83,26 @@
       }
       border-width: 0px;;
     }
+
+
+    .no-games {
+      text-align: center;
+      font-size: 0.8em;
+      color: gray;
+      padding: 1em 1em;
+      opacity: 0;
+      animation: fade-in-opacity 200ms ease-in 500ms;
+      animation-fill-mode: forwards;
+    }
+    @keyframes fade-in-opacity {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
   }
 }

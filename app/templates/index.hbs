@@ -24,6 +24,11 @@
           </div>
         </li>
       {{/each}}
+      {{#if hasOnlyArchivedGames}}
+        <li class="no-games">
+          Tu n'as pas de parties en cours. Démarres-en une et puis ensuite on voit ?
+        </li>
+      {{/if}}
     </ul>
   {{/if}}
 </div>
