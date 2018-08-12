@@ -7,11 +7,11 @@ export default Mixin.create({
   onHoldDelay: '1s',
   didInsertElement () {
     this.$()
-      .on('mousedown', () => this.holdStart() || false)
-      .on('touchstart', () => this.holdStart() || false)
-      .on('mouseup', () => this.holdStop() || false)
-      .on('touchend', () => this.holdStop() || false)
-      .on('touchleave', () => this.holdStop() || false)
+      .on('mousedown', () => this.holdStart())
+      .on('touchstart', () => this.holdStart())
+      .on('mouseup', () => this.holdStop())
+      .on('touchend', () => this.holdStop())
+      .on('touchleave', () => this.holdStop())
   },
   holdStart () {
     this.onHoldTimeout = setTimeout(() => {
