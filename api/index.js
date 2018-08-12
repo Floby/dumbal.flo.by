@@ -2,6 +2,8 @@ const SSEWriter = require('sse-writer')
 const { Router } = require('express')
 const Version = require('./version.js')
 const Config = require('./config')
+const faker = require('faker')
+faker.locale = 'fr'
 
 module.exports = Api
 
@@ -24,6 +26,15 @@ function Api () {
     } catch (error) {
       next(error)
     }
+  })
+
+  router.get('/random-names', async (req, res, next) => {
+    const count = Math.min(Number(req.query.count) || 50, 50)
+    const randomNames = []
+    for (var i = 0; i < count; ++i) {
+      randomNames.push(faker.company.catchPhrase())
+    }
+    res.send(randomNames)
   })
   return router
 }

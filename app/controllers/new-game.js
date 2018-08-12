@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import faker from 'faker';
-faker.locale = 'fr'
+import { inject } from '@ember/service'
 
 export default Controller.extend({
+  randomNames: inject(),
   newGameName: null,
   newPlayerName: null,
   players: null,
@@ -12,7 +12,7 @@ export default Controller.extend({
     this.set('players', [])
     this.set('newGameName', null)
     this.set('newPlayerName', null)
-    this.set('gameNamePlaceholder', faker.company.catchPhrase())
+    this.set('gameNamePlaceholder', this.get('randomNames').pop())
   },
 
   hasEnoughPlayers: computed('players.length', 'newPlayerName', function () {
