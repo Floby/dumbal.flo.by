@@ -19,6 +19,8 @@ export default Route.extend({
       } catch (error) {
         if (error instanceof DumbalError) {
           return this.get('notify').warning(error.message)
+        } else {
+          throw error
         }
       }
     },

@@ -65,6 +65,7 @@
     "compression": "^1.7.3",
     "dotenv": "^6.0.0",
     "envie": "^1.5.0",
+    "es6-error": "^4.1.1",
     "fastboot-app-server": "^1.1.2-beta.1",
     "joi": "^13.5.2",
     "morgan": "^1.9.0",

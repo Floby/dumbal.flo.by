@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4';
 import EmberObject, { computed } from '@ember/object'
-
+import CustomError from 'es6-error'
 
 export default EmberObject.extend({
   name: null,
@@ -125,13 +125,13 @@ function checkHasNegativeScore (scores) {
 }
 
 
-export class DumbalError extends Error {
+export class DumbalError extends CustomError {
   constructor(message) {
-    super(message)
+    super(...arguments)
   }
 }
 
-class NoNegativeScoreError extends DumbalError {
+export class NoNegativeScoreError extends DumbalError {
   constructor () {
     super("C'est bizarre. Il devrait y avoir au moins un score négatif")
   }
