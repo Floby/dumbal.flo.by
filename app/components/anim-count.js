@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import animate from 'amator';
+import { observer } from '@ember/object'
 
 export default Component.extend({
   value: 0,
@@ -9,11 +10,9 @@ export default Component.extend({
   init () {
     this._super(...arguments)
     this.set('displayValue', this.get('value'))
-
-    this.addObserver('value', () => this.onValueChange)
   },
 
-  onValueChange: function () {
+  onValueChange: observer('value', function () {
     const previousValue = this.get('displayValue')
     const nextValue = this.get('value')
     animate(
@@ -30,5 +29,5 @@ export default Component.extend({
         }
       }
     )
-  }
+  })
 });
