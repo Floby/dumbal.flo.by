@@ -25,6 +25,12 @@
         {{#link-to 'game.round' (query-params number=model.newRoundCount) class="button dumbal-round"}}Dumbal !{{/link-to}}
       {{/if}}
     </div>
+  {{else}}
+    <div class="dumbal-action">
+      {{#link-to 'new-game' (query-params from=model.id) class="button dumbal-revenge"}}
+        Revanche !
+      {{/link-to}}
+    </div>
   {{/unless}}
 
 

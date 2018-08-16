@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { get } from '@ember/object'
 import Service from '@ember/service';
 import { inject } from '@ember/service';
 import Game, { Player } from '../models/game';
@@ -24,6 +25,7 @@ export default Service.extend({
     })
   },
 
+
   load(gameId) {
     if (this.loaded[gameId]) {
 
@@ -33,7 +35,11 @@ export default Service.extend({
     if (!serializedGame) {
       throw Error(`Could not find Game with Id ${String(gameId)}`)
     }
-    const game = Game.create({ id: gameId, startDate: serializedGame.startDate })
+    const game = Game.create({
+      id: gameId,
+      startDate: serializedGame.startDate,
+      parentId: serializedGame.parentId
+    })
     this.updateGameFromPayload(game, serializedGame)
     this.loaded[gameId] = game
     return game
@@ -51,6 +57,7 @@ export default Service.extend({
   save (game) {
     const serialized = {
       name: game.get('name'),
+      parentId: game.get('parentId'),
       startDate: game.get('startDate'),
       players: game.get('players').map((player) => {
         return {
@@ -64,9 +71,13 @@ export default Service.extend({
     return game;
   },
 
-  createNewGame (name, playerNames) {
+  createNewGame (name, playerNames, parent) {
+    let parentId
+    if (parent) {
+      parentId = get(parent, 'id')
+    }
     const startDate = moment.utc().format();
-    const game = Game.create({ name, startDate })
+    const game = Game.create({ name, startDate, parentId })
     playerNames.forEach((name) => game.addPlayer(name))
     return this.save(game)
   },

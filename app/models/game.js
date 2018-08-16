@@ -7,6 +7,7 @@ export default EmberObject.extend({
   players: null,
   archived: false,
   startDate: null,
+  parentId: null,
   roundCount: computed('players.@each.roundCount', function () {
     const rounds = this.get('players').map((player) => {
       return player.get('roundCount')

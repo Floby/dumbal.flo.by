@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { inject } from '@ember/service'
 
 export default Controller.extend({
@@ -9,11 +9,24 @@ export default Controller.extend({
   players: null,
   init () {
     this._super(...arguments)
+    this.initFromEmpty()
+  },
+
+  initFromEmpty () {
     this.set('players', [])
     this.set('newGameName', null)
     this.set('newPlayerName', null)
     this.set('gameNamePlaceholder', this.get('randomNames').pop())
   },
+
+  initFromGame: observer('model', function () {
+    this.initFromEmpty();
+    const game = this.get('model')
+    if (!game) return;
+    this.set('newGameName', `Revanche de ${game.get('name')}`)
+    const players = game.get('players').map((player) => player.get('name'))
+    this.set('players', players)
+  }),
 
   hasEnoughPlayers: computed('players.length', 'newPlayerName', function () {
     const newPlayerName = (this.get('newPlayerName') || '').trim()

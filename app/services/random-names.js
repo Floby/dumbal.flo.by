@@ -28,10 +28,11 @@ export default Service.extend({
         const missingCount = POOL_IDEAL_SIZE - pool.length
         const response = await fetch(`/api/random-names?count=${missingCount}`)
         const names = await response.json()
-        const currentPool = this.randomNamesStore.get('pool')
+        const currentPool = this.randomNamesStore.get('pool') || []
+        console.log('setting names')
         this.randomNamesStore.set('pool', currentPool.concat(names))
       } catch (error) {
-        console.warn('Offline, cannot replenish random name pool')
+        console.warn('Offline, cannot replenish random name pool', error)
       }
     }
     this.set('checking', false)

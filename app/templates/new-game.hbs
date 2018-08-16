@@ -1,4 +1,8 @@
-{{screen-title title="Nouvelle Partie" navigation="back"}}
+{{#if model}}
+  {{screen-title title="Lancer une revanche" navigation="back"}}
+{{else}}
+  {{screen-title title="Nouvelle Partie" navigation="back"}}
+{{/if}}
 <div class="new-game">
   <div class="game-name">
     {{mat-input label="Nom de la partie" value=newGameName placeholder=gameNamePlaceholder}}
