@@ -1,0 +1,41 @@
+.labeled-switch {
+  input[type=checkbox] {
+    display: none;
+  }
+  .toggler {
+    transition: 200ms;
+    &.enabled {
+      text-shadow: 0em 0.1em 0.2em lighten(desaturate(@darkPrimaryColor, 50), 20);
+    }
+    .toggle {
+      display: inline-block;
+      width: 1.5em;
+      background: lightgray;
+      height: 0.5em;
+      position: relative;
+      bottom: 0em;
+      margin-left: 1em;
+      transition: 200ms;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        background: @primaryColor;
+        transform: translate3d(0, 0, 0);
+        left: -0.5em;
+        bottom: -0.25em;
+        width: 1em;
+        height: 1em;
+        border-radius: 1em;
+        transition: 200ms;
+      }
+      &.enabled {
+        background: lighten(@primaryColor, 35);
+        &:after {
+          transform: translate3d(1.5em, 0, 0);
+        }
+      }
+    }
+  }
+}

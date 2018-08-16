@@ -1,5 +1,8 @@
 {{screen-title title=model.name navigation="home"}}
 <form class="game active {{if model.isOver "over"}}" action="#" {{action "addRound" newRoundScores on="submit"}}>
+  {{#if model.isLeague}}
+    {{dumbal-league-banner}}
+  {{/if}}
   <div class="players {{if isFinishingRound "round"}}">
     {{#each model.players as |player|}}
     <div class="player {{if player.isOut "is-out"}} {{if player.isWinner "winner"}}">

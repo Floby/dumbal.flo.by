@@ -38,7 +38,8 @@ export default Service.extend({
     const game = Game.create({
       id: gameId,
       startDate: serializedGame.startDate,
-      parentId: serializedGame.parentId
+      parentId: serializedGame.parentId,
+      isLeague: Boolean(serializedGame.isLeague)
     })
     this.updateGameFromPayload(game, serializedGame)
     this.loaded[gameId] = game
@@ -59,6 +60,7 @@ export default Service.extend({
       name: game.get('name'),
       parentId: game.get('parentId'),
       startDate: game.get('startDate'),
+      isLeague: game.get('isLeague'),
       players: game.get('players').map((player) => {
         return {
           name: player.get('name'),
@@ -71,13 +73,13 @@ export default Service.extend({
     return game;
   },
 
-  createNewGame (name, playerNames, parent) {
+  createNewGame (name, playerNames, parent, isLeague) {
     let parentId
     if (parent) {
       parentId = get(parent, 'id')
     }
     const startDate = moment.utc().format();
-    const game = Game.create({ name, startDate, parentId })
+    const game = Game.create({ name, startDate, parentId, isLeague })
     playerNames.forEach((name) => game.addPlayer(name))
     return this.save(game)
   },

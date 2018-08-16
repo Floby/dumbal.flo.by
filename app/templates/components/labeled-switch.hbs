@@ -1,0 +1,5 @@
+<label for="{{elementId}}-toggle" class="toggler {{if value 'enabled'}}">
+  {{label}}
+  {{input type="checkbox" checked=value id=(concat elementId '-toggle') name=(concat elementId '-toggle')}}
+  <span class="toggle {{if value 'enabled'}}"></span>
+</label>

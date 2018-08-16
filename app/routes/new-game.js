@@ -17,9 +17,11 @@ export default Route.extend({
   },
   game: inject(),
   actions: {
-    startNewGame (name, playerNames) {
+    startNewGame (name, playerNames, isLeague) {
+      console.log('arguments', arguments)
+
       const parent = this.modelFor(this.routeName)
-      const game = this.get('game').createNewGame(name, playerNames, parent)
+      const game = this.get('game').createNewGame(name, playerNames, parent, isLeague)
       this.transitionTo('game', game)
     }
   }

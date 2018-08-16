@@ -3,6 +3,8 @@
 @import './notify.less';
 @import './game.less';
 @import './game-list.less';
+@import './components/labeled-switch.less';
+@import './components/dumbal-league-banner.less';
 
 body {
   -webkit-tap-highlight-color: transparent; 
@@ -15,11 +17,16 @@ body {
 
 .new-game {
   .game-name {
-    margin: 2em 0;
+    margin: 2em 0 1em;
     padding: 0 1em;
     .mat-input-container {
       width: 100%
     }
+  }
+
+  .is-league {
+    margin: 1em 0;
+    padding: 0 1em;
   }
 
   .player {

@@ -17,6 +17,7 @@ export default Controller.extend({
     this.set('newGameName', null)
     this.set('newPlayerName', null)
     this.set('gameNamePlaceholder', this.get('randomNames').pop())
+    this.set('isLeague', false)
   },
 
   initFromGame: observer('model', function () {
@@ -59,9 +60,9 @@ export default Controller.extend({
         gameName = this.get('gameNamePlaceholder')
       }
       if (newPlayerName) {
-        this.send('startNewGame', gameName, playerNames.concat([newPlayerName.trim()]))
+        this.send('startNewGame', gameName, playerNames.concat([newPlayerName.trim()]), this.get('isLeague'))
       } else {
-        this.send('startNewGame', gameName, playerNames)
+        this.send('startNewGame', gameName, playerNames, this.get('isLeague'))
       }
       this.init()
     }

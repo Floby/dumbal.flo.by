@@ -8,6 +8,8 @@
     {{mat-input label="Nom de la partie" value=newGameName placeholder=gameNamePlaceholder}}
   </div>
 
+  {{labeled-switch class="is-league" value=isLeague label="Match de ligue"}}
+
   {{#each players as |name|}}
     <div class="player">
       <strong class="name">{{name}}</strong>

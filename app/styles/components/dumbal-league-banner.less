@@ -1,0 +1,40 @@
+.dumbal-league-banner {
+  font-size: 0.7em;
+  margin: 0.5em 0 0;
+  padding: 0.1em 0;
+  position: relative;
+  color: @darkPrimaryColor;
+  overflow-x: hidden;
+  &:after, &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 1.5em;
+    height: 100%;
+    background: linear-gradient(to left, white, transparent);
+    z-index: 2;
+  }
+  &:before {
+    left: 0;
+    transform: rotateZ(180deg);
+  }
+  &:after {
+    right: 0;
+  }
+
+  p {
+    z-index: 1;
+    animation: banner-from-right 10s linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes banner-from-right {
+    0% {
+      transform: translate3d(110%, 0, 0);
+    }
+    100% {
+      transform: translate3d(-60%, 0, 0);
+    }
+  }
+}
