@@ -10,17 +10,8 @@ module('Integration | Component | anim-count', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{anim-count}}`);
+    await render(hbs`{{anim-count value=8}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#anim-count}}
-        template block text
-      {{/anim-count}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(this.element.textContent.trim(), '8');
   });
 });
