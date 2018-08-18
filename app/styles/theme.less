@@ -1,10 +1,5 @@
 @import "./reset.less";
 @import "./palette.less";
-@inAccentColor: @textPrimaryColor;
-
-html, body {
-  height: 100%;
-}
 
 body, button {
   font-family: Roboto, "Open Sans", Ubuntu, sans-serif;
@@ -25,9 +20,11 @@ button, input[type=submit], a.button {
   text-decoration: none;
   font-size: 100%;
   background: @accentColor;
+  background: var(--accent-color);
   border: none;
   text-transform: uppercase;
   color: @inAccentColor;
+  color: var(--in-accent-color);
   font-weight: bold;
   padding: 0.5em 1em;
   line-height: normal;
@@ -54,6 +51,7 @@ button, input[type=submit], a.button {
     left: 0em;
     top: 0;
     color: @secondaryTextColor;
+    color: var(--secondary-text-color);
     transition: ease-out 0.2s
   }
   input {
@@ -63,12 +61,15 @@ button, input[type=submit], a.button {
     font-size: 90%;
     font-weight: normal;
     color: @primaryTextColor;
+    color: var(--primary-text-color);
     padding-left: 0.1em;
     border-bottom: 1px @dividerColor solid;
+    border-bottom: 1px var(--divider-color) solid;
   }
 
   input:focus + label, label.not-empty, input[placeholder] + label {
     color: @primaryColor;
+    color: var(--primary-color);
     left: 0.1em;
     top: -1em;
     font-size: 80%;

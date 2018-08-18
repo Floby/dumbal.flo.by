@@ -18,6 +18,7 @@
         border-radius: 0.3em;
         padding: 0.5em;
         color: @secondaryTextColor;
+        color: var(--secondary-text-color);
         position: relative;
         transition: .2s ease-out;
       }
@@ -39,6 +40,7 @@
       &.dumbal .name {
         font-weight: bold;
         color: @darkPrimaryColor;
+        color: var(--dark-primary-color);
       }
       a.dumbal-round {
         float: right;
@@ -74,6 +76,7 @@
       transition: background-color 200ms ease-out;
       font-size: 0.6em;
       background-color: desaturate(lighten(@accentColor, 10%), 60%);
+      background-color: var(--faded-accent-color);
       &[disabled] {
         .disabled-button();
       }
@@ -85,6 +88,7 @@
       .name {
         font-weight: bold;
         color: @darkPrimaryColor;
+        color: var(--dark-primary-color);
         .winner-icon {
           animation-name: twist-in-with-opacity;
           animation-duration: 1s;
@@ -94,7 +98,9 @@
       .score {
         background: white;
         border: @darkPrimaryColor 1px solid;
+        border: var(--dark-primary-color) 1px solid;
         color: @primaryColor;
+        color: var(--primary-color);
       }
     }
   }
@@ -170,6 +176,7 @@
       th {
         //font-weight: bold;
         color: @darkPrimaryColor;
+        color: var(--dark-primary-color);
       }
       th:first-child {
         border-right: 1px solid #666
@@ -184,7 +191,8 @@
         tr {
           //border-bottom: 1px solid #ddd;
           &:nth-child(even) {
-            background-color: lighten(@lightPrimaryColor, 12%);
+            background-color: @lighterPrimaryColor;
+            background-color: var(--lighter-primary-color);
           }
           td {
             padding: 0.5em;

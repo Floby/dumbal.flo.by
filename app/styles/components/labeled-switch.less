@@ -5,7 +5,8 @@
   .toggler {
     transition: 200ms;
     &.enabled {
-      text-shadow: 0em 0.1em 0.2em lighten(desaturate(@darkPrimaryColor, 50), 20);
+      text-shadow: 0em 0.1em 0.2em @darkPrimaryColorShadow;
+      text-shadow: 0em 0.1em 0.2em var(--dark-primary-color-shadow);
     }
     .toggle {
       display: inline-block;
@@ -22,6 +23,7 @@
         display: inline-block;
         position: absolute;
         background: @primaryColor;
+        background: var(--primary-color);
         transform: translate3d(0, 0, 0);
         left: -0.5em;
         bottom: -0.25em;
@@ -32,6 +34,7 @@
       }
       &.enabled {
         background: lighten(@primaryColor, 35);
+        background: var(--light-primary-color);
         &:after {
           transform: translate3d(1.5em, 0, 0);
         }

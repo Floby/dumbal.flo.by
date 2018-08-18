@@ -8,3 +8,25 @@
 @primaryTextColor:   #212121;
 @secondaryTextColor: #757575;
 @dividerColor:       #BDBDBD;
+
+@inAccentColor: @textPrimaryColor;
+@darkPrimaryColorShadow: lighten(desaturate(@darkPrimaryColor, 50), 20);
+@fadedAccentColor: desaturate(lighten(@accentColor, 10%), 60%);
+@lighterPrimaryColor: lighten(@lightPrimaryColor, 12%);
+
+body, :root {
+  --dark-primary-color: @darkPrimaryColor;
+  --primary-color: @primaryColor;
+  --light-primary-color: @lightPrimaryColor;
+  --text-primary-color: @textPrimaryColor;
+  --accent-color: @accentColor;
+  --primary-text-color: @primaryTextColor;
+  --secondary-text-color: @secondaryTextColor;
+  --divider-color: @dividerColor;
+
+  --in-accent-color: @inAccentColor;
+  --dark-primary-color-shadow: @darkPrimaryColorShadow;
+  --faded-accent-color: @fadedAccentColor;
+  --lighter-primary-color: @lighterPrimaryColor;
+}
+

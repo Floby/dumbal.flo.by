@@ -18,8 +18,11 @@ body {
 
 .screen-title {
   border-top: 0.6em solid @darkPrimaryColor;
+  border-top: 0.6em solid var(--dark-primary-color);
   background-color: @primaryColor;
+  background-color: var(--primary-color);
   color: @textPrimaryColor;
+  color: var(--text-primary-color);
   font-weight: bold;
   font-size: 1.2em;
   overflow: hidden;
@@ -62,6 +65,7 @@ body {
       animation-duration: 800ms;
       h2 {
         color: @textPrimaryColor;
+        color: var(--text-primary-color);
       }
     }
   }
@@ -69,12 +73,15 @@ body {
   @keyframes from-background-color {
     0% {
       color: @primaryColor;
+      color: var(--primary-color);
     }
     20% {
       color: @primaryColor;
+      color: var(--primary-color);
     }
     100% {
       color: @textPrimaryColor;
+      color: var(--text-primary-color);
     }
   }
 
@@ -100,6 +107,7 @@ body {
 
   .fa-inverse {
     color: @primaryColor;
+    color: var(--primary-color);
   }
 
   position: relative;
@@ -113,6 +121,12 @@ body {
       to left,
       @primaryColor 0%,
       @primaryColor 20%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    background-image: linear-gradient(
+      to left,
+      var(--primary-color) 0%,
+      var(--primary-color) 20%,
       rgba(0, 0, 0, 0) 100%
     );
     right: 0;
