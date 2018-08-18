@@ -3,7 +3,12 @@
 @inAccentColor: @textPrimaryColor;
 
 body, button {
-  font-family: Roboto, "Open Sans", Ubuntu, sans-serif
+  font-family: Roboto, "Open Sans", Ubuntu, sans-serif;
+  transition: filter 500ms ease-in-out;
+}
+
+body.league-mode {
+  filter: grayscale(80%) contrast(120%) hue-rotate(75deg);
 }
 
 .disabled-button {

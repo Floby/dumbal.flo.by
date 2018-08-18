@@ -5,8 +5,20 @@ import { DumbalError } from '../models/game'
 export default Route.extend({
   notify: inject(),
   game: inject(),
+  leagueMode: inject(),
   model: function (params) {
     return this.get('game').getById(params.game_id);
+  },
+
+  afterModel (model) {
+    if (model.get('isLeague')) {
+      this.get('leagueMode').enable()
+    } else {
+      this.get('leagueMode').disable()
+    }
+  },
+  deactivate () {
+      this.get('leagueMode').disable()
   },
 
   actions: {
@@ -31,3 +43,4 @@ export default Route.extend({
     }
   }
 });
+
