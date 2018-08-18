@@ -97,8 +97,10 @@
       }
       .score {
         background: white;
-        border: @darkPrimaryColor 1px solid;
-        border: var(--dark-primary-color) 1px solid;
+        border: 1px solid;
+        border-color: @darkPrimaryColor;
+        border-color: var(--dark-primary-color);
+        padding: calc(0.5em - 1px);
         color: @primaryColor;
         color: var(--primary-color);
       }
