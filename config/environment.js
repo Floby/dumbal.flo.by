@@ -1,3 +1,4 @@
+require('dotenv').config()
 const ms = require('ms');
 const Version = require('../api/version.js')
 
@@ -15,9 +16,13 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
-      }
+      },
     },
 
+    auth0: {
+      domain: process.env.AUTH0_DOMAIN,
+      clientId: process.env.AUTH0_CLIENT_ID,
+    },
     version: Version.get(),
     versionWatcher: {
       delay: ms(process.env.UPDATE_WATCH_VERSION_RETRY || '10s')

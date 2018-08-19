@@ -8,6 +8,7 @@ export default Service.extend({
     this._super(...arguments)
     this.set('titles', [])
     this.set('navigations', [])
+    this.set('profileLinkPresences', [])
   },
   pushTitle(title) {
     this.titles.pushObject(title)
@@ -15,6 +16,13 @@ export default Service.extend({
   popTitle(title) {
     this.titles.removeObject(title)
   },
+  profileLinkPresenceIn (isPresent) {
+    this.profileLinkPresences.pushObject(isPresent)
+  },
+  profileLinkPresenceOut () {
+    this.profileLinkPresences.popObject()
+  },
+  profileLinkPresence: computed.alias('profileLinkPresences.lastObject'),
 
   navigationType: computed.alias('navigations.lastObject'),
 

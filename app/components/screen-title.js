@@ -5,6 +5,7 @@ export default Component.extend({
   screenTitle: inject(),
   title: null,
   navigation: null,
+  profileLink: false,
   positionalParams: ['title'],
 
   didRender () {
@@ -12,6 +13,7 @@ export default Component.extend({
     if (this.get('navigation')) {
       this.get('screenTitle.navigations').pushObject(this.get('navigation'))
     }
+    this.get('screenTitle').profileLinkPresenceIn(Boolean(this.get('profileLink')))
   },
 
   didDestroyElement () {
@@ -19,5 +21,6 @@ export default Component.extend({
     if (this.get('navigation')) {
       this.get('screenTitle.navigations').popObject(this.get('navigation'))
     }
+    this.get('screenTitle').profileLinkPresenceOut()
   }
 });

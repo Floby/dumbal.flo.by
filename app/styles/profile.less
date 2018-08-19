@@ -1,0 +1,42 @@
+.profile {
+  margin: 1em;
+  .identity {
+    border-bottom: 1px solid @dividerColor;
+    border-color: var(--divider-color);
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: space-around;
+    .picture {
+      width: 45%;
+      max-width: 12em;
+      img {
+        width: 100%;
+        border-radius: 100em;
+        box-shadow: .1em .3em .8em gray;
+        border: 1px solid;
+        border-color: @darkPrimaryColor;
+        border-color: var(--dark-primary-color);
+      }
+    }
+
+    .names {
+      padding-left: 12%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 10;
+      .nickname {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .details {
+    p {
+      margin: 3em auto;
+      color: @dividerColor;
+      color: var(--divider-color);
+    }
+  }
+}

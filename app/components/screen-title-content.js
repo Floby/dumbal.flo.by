@@ -10,6 +10,7 @@ export default Component.extend(OnHold, {
   screenTitle: inject(),
   primaryTitle: computed.alias('screenTitle.primaryTitle'),
   secondaryTitle: computed.alias('screenTitle.secondaryTitle'),
+  profileLinkPresence: computed.alias('screenTitle.profileLinkPresence'),
   navigationHome: computed('screenTitle.navigationType', function () {
     return this.get('screenTitle.navigationType') === 'home'
   }),

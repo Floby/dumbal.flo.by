@@ -71,6 +71,30 @@ html, body {
     }
   }
 
+  .profile-link {
+    flex-grow: 10;
+    flex-shrink: 10;
+    position: relative;
+    transform: translate3d(-1em, 0, 0);
+    max-width: 100em;
+    margin: 1.5em 0em 0em 1em;
+    padding-bottom: 0.6em;
+    text-align: right;
+    z-index: 10;
+    overflow-x: hidden;
+    transition:  200ms ease-out;
+    a {
+      font-size: 1.2em;
+      color: @textPrimaryColor;
+      color: var(--text-primary-color);
+    }
+    &.hidden {
+      //max-width: 0em;
+      margin: 1.5em 0em 0em 0em;
+      transform: translate3d(3em, 0, 0);
+    }
+  }
+
   @keyframes from-background-color {
     0% {
       color: @primaryColor;
@@ -113,6 +137,7 @@ html, body {
 
   position: relative;
   &:after {
+    z-index: 5;
     content: '';
     display: block;
     position: absolute;
