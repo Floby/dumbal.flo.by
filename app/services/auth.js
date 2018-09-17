@@ -4,6 +4,7 @@ import Service, { inject } from '@ember/service'
 import { isPresent } from '@ember/utils'
 import config from 'dumbal-league/config/environment';
 import crypto from 'crypto-js'
+import ms from 'ms'
 
 
 const AUTH_CONFIG = config.auth0;
@@ -17,6 +18,9 @@ export default Service.extend({
     this._super(...arguments)
     this.sessionStore = this.get('localStore').namespace('auth');
     this.stateStore = this.get('localStore').namespace('authstate');
+    this.refreshCheckInterval = setInterval(() => this.checkRefresh(), ms('30 seconds'))
+    this.setupExpirationTimeout()
+    this.checkRefresh()
   },
 
   async login() {
@@ -70,14 +74,42 @@ export default Service.extend({
     }
   },
 
-  async syncUserInfo (accessToken) {
+  async checkRefresh () {
+    const session = this.getSession()
+    const shouldRefresh = !this.get('isAuthenticated') && session.refresh_token
+    if (!shouldRefresh) {
+      return
+    }
+    debugger
+    const refreshUrl = baseAuthUrl
+      .segment('/oauth/token')
+      .toString()
+    const response = await fetch(refreshUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        grant_type: 'refresh_token',
+        client_id: AUTH_CONFIG.clientId,
+        client_secret: AUTH_CONFIG.clientSecret,
+        refresh_token: session.refresh_token
+      })
+    })
+    const body = await response.json()
+    this.setSession(Object.assign({ refresh_token: session.refresh_token }, body))
+  },
+
+  async fetchUserInfo(accessToken) {
     const userInfoUrl = baseAuthUrl.segment('/userinfo')
     const userInfoResponse = await fetch(userInfoUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
     })
-    const userInfo = await userInfoResponse.json()
+    return userInfoResponse.json()
+  },
+
+  async syncUserInfo (accessToken) {
+    const userInfo = await this.fetchUserInfo(accessToken)
     this.setUserInfo(userInfo)
   },
 
@@ -96,13 +128,19 @@ export default Service.extend({
     history.replaceState({ path: pathWithoutHash }, pathWithoutHash, pathWithoutHash);
   },
 
-  isAuthenticated: computed(function() {
-    return isPresent(this.getSession().access_token) && this.isNotExpired();
+  isAuthenticated: computed('session.access_token', 'isExpired', function() {
+    return this.get('session.access_token') && !this.get('isExpired')
+  }),
+
+  session: computed(function () {
+    const session = this.getSession()
+    return session
   }).volatile(),
 
   getSession() {
     return {
       access_token: this.sessionStore.get('access_token'),
+      refresh_token: this.sessionStore.get('refresh_token'),
       id_token: this.sessionStore.get('id_token'),
       expires_at: new Date(this.sessionStore.get('expires_at'))
     };
@@ -117,9 +155,12 @@ export default Service.extend({
     if (authResult && authResult.access_token && authResult.id_token) {
       // Set the time that the access token will expire at
       let expiresAt = (authResult.expires_in * 1000) + new Date().getTime();
-      this.sessionStore('access_token', authResult.access_token);
-      this.sessionStore('id_token', authResult.id_token);
-      this.sessionStore('expires_at', expiresAt);
+      this.sessionStore.set('access_token', authResult.access_token);
+      this.sessionStore.set('refresh_token', authResult.refresh_token);
+      this.sessionStore.set('id_token', authResult.id_token);
+      this.sessionStore.set('expires_at', expiresAt);
+      Ember.notifyPropertyChange(this, 'session')
+      this.setupExpirationTimeout()
     }
   },
 
@@ -130,11 +171,26 @@ export default Service.extend({
     this.sessionStore.remove('expires_at');
   },
 
-  isNotExpired() {
-    // Check whether the current time is past the
-    // access token's expiry time
-    let expiresAt = this.getSession().expires_at;
-    return new Date().getTime() < expiresAt;
+  isExpired: computed('session.expires_at', function () {
+    let expiresAt = this.get('session.expires_at');
+    return Date.now() > expiresAt.getTime();
+  }),
+
+  setupExpirationTimeout() {
+    if (this._expirationTimeout) {
+      clearTimeout(this._expirationTimeout)
+      this._expirationTimeout = null
+    }
+    let expiresAt = this.get('session.expires_at');
+    if (!expiresAt) {
+      return
+    }
+    const delay = expiresAt.getTime() - Date.now()
+    if (delay > 0) {
+      this._expirationTimeout = setTimeout(() => {
+        Ember.notifyPropertyChange(this, 'session.expires_at')
+      }, delay)
+    }
   }
 })
 
