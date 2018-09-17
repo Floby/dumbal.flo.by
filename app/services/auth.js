@@ -1,11 +1,13 @@
-import auth0 from 'auth0-js'
-import { computed, get } from '@ember/object'
+import UrlAssembler from 'url-assembler'
+import { computed } from '@ember/object'
 import Service, { inject } from '@ember/service'
 import { isPresent } from '@ember/utils'
 import config from 'dumbal-league/config/environment';
-import pify from 'pify'
+import crypto from 'crypto-js'
+
 
 const AUTH_CONFIG = config.auth0;
+const baseAuthUrl = UrlAssembler(`https://${AUTH_CONFIG.domain}`)
 
 export default Service.extend({
   router: inject(),
@@ -14,56 +16,68 @@ export default Service.extend({
   init () {
     this._super(...arguments)
     this.sessionStore = this.get('localStore').namespace('auth');
+    this.stateStore = this.get('localStore').namespace('authstate');
   },
-  webAuth: computed(function () {
-    const instance =  new auth0.WebAuth({
-      domain: AUTH_CONFIG.domain,
-      clientID: AUTH_CONFIG.clientId,
-      redirectUri: window.location.origin + '/profile',
-      audience: `https://${AUTH_CONFIG.domain}/userinfo`,
-      responseType: 'token id_token',
-      scope: 'openid profile user_metadata'
-    });
-    return pify(instance)
-  }),
 
   async login() {
-    const authorizeOptions = { }
-    const webAuth = get(this, 'webAuth')
-    try {
-      const credentials = await webAuth.checkSession(authorizeOptions)
-      console.log('check session credentials', credentials)
-    } catch (err) {
-      console.log('check session err', err)
-    }
-    webAuth.authorize(authorizeOptions);
+    const state = randomBytesAsBase64(8)
+    const verifierPair = generateVerifierPair()
+    this.stateStore.set(state, verifierPair)
+    const authorizeUrl = baseAuthUrl
+      .segment('/authorize')
+      .query({
+        code_challenge: verifierPair.challenge,
+        code_challenge_method: 'S256',
+        state: state,
+        response_type: 'code',
+        scope: 'openid profile user_metadata offline_access',
+        client_id: AUTH_CONFIG.clientId,
+        client_secret: AUTH_CONFIG.clientSecret,
+        redirect_uri: window.location.origin + '/profile',
+      })
+      .toString()
+
+    window.location = authorizeUrl
   },
 
-  async handleAuthentication() {
-    const webAuth = this.get('webAuth')
-    try {
-      const hash = window.location.hash
-      if (!hash) {
-        return
+  async tryToAuthenticate(queryParams) {
+    if (queryParams.code) {
+      try {
+        const { verifier } = this.stateStore.get(queryParams.state)
+        this.stateStore.remove(queryParams.state)
+        const tokenUrl = `https://${AUTH_CONFIG.domain}/oauth/token`;
+        const response = await fetch(tokenUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            'client_id': AUTH_CONFIG.clientId,
+            'client_secret': AUTH_CONFIG.clientSecret,
+            'grant_type': 'authorization_code',
+            'redirect_uri': window.location.origin + '/profile',
+            'code': queryParams.code,
+            code_verifier: verifier
+          })
+        })
+        const reply = await response.json()
+        if (reply.access_token && reply.id_token) {
+          this.setSession(reply)
+          await this.syncUserInfo(reply.access_token)
+          this.eraseAuthParameters()
+        }
+      } catch (error) {
+        throw error
       }
-      const authResult = await webAuth.parseHash({ hash })
-      if (!authResult) {
-        return
-      }
-      if (authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        await this.syncUserInfo(authResult.accessToken)
-        this.eraseHash()
-      }
-    } catch (error) {
-      console.log('error while handling authentication', error)
     }
   },
 
   async syncUserInfo (accessToken) {
-    const webAuth = this.get('webAuth')
-    const getUserInfo = pify(webAuth.client.userInfo.bind(webAuth.client))
-    const userInfo = await getUserInfo(accessToken)
+    const userInfoUrl = baseAuthUrl.segment('/userinfo')
+    const userInfoResponse = await fetch(userInfoUrl, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    const userInfo = await userInfoResponse.json()
     this.setUserInfo(userInfo)
   },
 
@@ -75,9 +89,10 @@ export default Service.extend({
     return this.sessionStore.get('userInfo')
   }).volatile(),
 
-  eraseHash () {
-    const router = this.get('router')
-    const pathWithoutHash = router.currentURL.split('#').shift()
+  eraseAuthParameters () {
+    //const router = this.get('router')
+    //const pathWithoutHash = router.currentURL.split('#').shift()
+    const pathWithoutHash = '/profile'
     history.replaceState({ path: pathWithoutHash }, pathWithoutHash, pathWithoutHash);
   },
 
@@ -99,11 +114,11 @@ export default Service.extend({
 
   setSession(authResult) {
     this.set('lastUpdated', Date.now());
-    if (authResult && authResult.accessToken && authResult.idToken) {
+    if (authResult && authResult.access_token && authResult.id_token) {
       // Set the time that the access token will expire at
-      let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-      this.sessionStore('access_token', authResult.accessToken);
-      this.sessionStore('id_token', authResult.idToken);
+      let expiresAt = (authResult.expires_in * 1000) + new Date().getTime();
+      this.sessionStore('access_token', authResult.access_token);
+      this.sessionStore('id_token', authResult.id_token);
       this.sessionStore('expires_at', expiresAt);
     }
   },
@@ -121,4 +136,27 @@ export default Service.extend({
     let expiresAt = this.getSession().expires_at;
     return new Date().getTime() < expiresAt;
   }
-});
+})
+
+
+function randomBytesAsBase64 (nBytes) {
+  return base64URLEncode(crypto.lib.WordArray.random(nBytes))
+}
+
+function generateVerifierPair () {
+  const verifier = randomBytesAsBase64(32)
+  const challenge = base64URLEncode(sha256(crypto.enc.Utf8.parse(verifier)))
+  return { verifier, challenge }
+}
+
+
+function sha256(buffer) {
+  return crypto.SHA256(buffer)
+}
+
+function base64URLEncode(buffer) {
+  return crypto.enc.Base64.stringify(buffer)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+}

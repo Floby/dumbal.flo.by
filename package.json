@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "compression": "^1.7.3",
+    "crypto-js": "^3.1.9-1",
     "dotenv": "^6.0.0",
     "envie": "^1.5.0",
     "es6-error": "^4.1.1",
@@ -71,6 +72,7 @@
     "morgan": "^1.9.0",
     "ms": "^2.1.1",
     "pify": "^3.0.0",
-    "sse-writer": "^2.0.0"
+    "sse-writer": "^2.0.0",
+    "url-assembler": "^1.2.10"
   }
 }
