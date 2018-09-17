@@ -6,7 +6,7 @@ export default Service.extend({
   init () {
     this._super(...arguments)
     const document = this.get('currentDocument')
-    const themeColorMetaElement = document.getElementById('theme-color-meta')
+    const themeColorMetaElement = document.querySelector('meta[name=theme-color]')
     this.set('themeColorInitialValue', themeColorMetaElement.content)
     this.themeColorMetaElement = themeColorMetaElement
   },
