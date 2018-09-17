@@ -42,6 +42,13 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com"
+    },
+
+    emberTracker: {
+      analyticsSettings: {
+        trackingId: process.env.GA_TRACKING_ID,
+        afterCreate: "ga('set', 'dimension1', 'online');"
+      }
     }
   };
 

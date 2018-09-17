@@ -1,0 +1,7 @@
+{
+  "name": "ember-service-worker-offline-analytics",
+  "keywords": [
+    "ember-addon",
+    "ember-service-worker-plugin"
+  ]
+}

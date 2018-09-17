@@ -76,5 +76,10 @@
     "pify": "^3.0.0",
     "sse-writer": "^2.0.0",
     "url-assembler": "^1.2.10"
+  },
+  "ember-addon": {
+    "paths": [
+      "lib/ember-service-worker-offline-analytics"
+    ]
   }
 }
