@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "amator": "^1.1.0",
+    "auth0-js": "^9.7.3",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-auto-import": "^1.2.5",
@@ -47,7 +48,6 @@
     "ember-service-worker-index": "^0.6.9",
     "ember-source": "~3.3.0",
     "ember-web-app": "^2.3.0",
-    "ember-welcome-page": "^3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "express": "^4.16.3",
     "glob": "^4.5.3",
@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "compression": "^1.7.3",
+    "crypto-js": "^3.1.9-1",
     "dotenv": "^6.0.0",
     "envie": "^1.5.0",
     "es6-error": "^4.1.1",
@@ -71,6 +72,7 @@
     "morgan": "^1.9.0",
     "ms": "^2.1.1",
     "pify": "^3.0.0",
-    "sse-writer": "^2.0.0"
+    "sse-writer": "^2.0.0",
+    "url-assembler": "^1.2.10"
   }
 }

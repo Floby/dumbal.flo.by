@@ -1,0 +1,29 @@
+{{screen-title title="Ton profil" navigation="home"}}
+<div class="profile">
+  {{#if model}}
+  <div class="identity">
+    <div class="picture">
+      <img class="picture" src="{{model.picture}}" alt="{{model.name}}">
+    </div>
+    <div class="names">
+      <h3 class="nickname">
+        {{model.nickname}}
+      </h3>
+      <h4 class="fullname">{{model.name}}</h4>
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="details">
+    {{#unless isAuthenticated}}
+      <div class="refresh-login-action">
+        <p>Ta session a expiré, tes parties et tes copains ne sont plus synchronisés.</p>
+        <button {{action "refreshLogin"}}>Rafraîchir</button>
+      </div>
+    {{else}}
+      <p class="no-info">
+        Il n'y pas encore grand chose ici :D désolé.
+      </p>
+    {{/unless}}
+  </div>
+</div>

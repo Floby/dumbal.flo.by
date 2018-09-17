@@ -7,13 +7,10 @@ module.exports = function(defaults) {
     'asset-cache': {
       include: [
         'assets/**/*',
+        'images/**/*',
         'fonts/**/*',
-        'ember-welcome-page/images/*'
       ]
    },
-    'ember-welcome-page': {
-      enabled: false
-    }
     // Add options here
   });
 
