@@ -1,14 +1,16 @@
 import UrlAssembler from 'url-assembler'
 import { computed } from '@ember/object'
 import Service, { inject } from '@ember/service'
-import { isPresent } from '@ember/utils'
 import config from 'dumbal-league/config/environment';
 import crypto from 'crypto-js'
 import ms from 'ms'
 
 
 const AUTH_CONFIG = config.auth0;
-const baseAuthUrl = UrlAssembler(`https://${AUTH_CONFIG.domain}`)
+const AUTH_BASE_URI = UrlAssembler(`https://${AUTH_CONFIG.domain}`)
+const AUTH_TOKEN_URI = AUTH_BASE_URI.segment('/oauth/token')
+const AUTH_USERINFO_URI = AUTH_BASE_URI.segment('/userinfo')
+const AUTH_AUTHORIZE_URI = AUTH_BASE_URI.segment('/authorize')
 
 export default Service.extend({
   router: inject(),
@@ -27,21 +29,16 @@ export default Service.extend({
     const state = randomBytesAsBase64(8)
     const verifierPair = generateVerifierPair()
     this.stateStore.set(state, verifierPair)
-    const authorizeUrl = baseAuthUrl
-      .segment('/authorize')
-      .query({
-        code_challenge: verifierPair.challenge,
-        code_challenge_method: 'S256',
-        state: state,
-        response_type: 'code',
-        scope: 'openid profile user_metadata offline_access',
-        client_id: AUTH_CONFIG.clientId,
-        client_secret: AUTH_CONFIG.clientSecret,
-        redirect_uri: window.location.origin + '/profile',
-      })
-      .toString()
-
-    window.location = authorizeUrl
+    window.location = AUTH_AUTHORIZE_URI.query({
+      code_challenge: verifierPair.challenge,
+      code_challenge_method: 'S256',
+      state: state,
+      response_type: 'code',
+      scope: 'openid profile user_metadata offline_access',
+      client_id: AUTH_CONFIG.clientId,
+      client_secret: AUTH_CONFIG.clientSecret,
+      redirect_uri: window.location.origin + '/profile',
+    })
   },
 
   async tryToAuthenticate(queryParams) {
@@ -49,8 +46,7 @@ export default Service.extend({
       try {
         const { verifier } = this.stateStore.get(queryParams.state)
         this.stateStore.remove(queryParams.state)
-        const tokenUrl = `https://${AUTH_CONFIG.domain}/oauth/token`;
-        const response = await fetch(tokenUrl, {
+        const response = await fetch(AUTH_TOKEN_URI, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -80,11 +76,7 @@ export default Service.extend({
     if (!shouldRefresh) {
       return
     }
-    debugger
-    const refreshUrl = baseAuthUrl
-      .segment('/oauth/token')
-      .toString()
-    const response = await fetch(refreshUrl, {
+    const response = await fetch(AUTH_TOKEN_URI, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -99,8 +91,7 @@ export default Service.extend({
   },
 
   async fetchUserInfo(accessToken) {
-    const userInfoUrl = baseAuthUrl.segment('/userinfo')
-    const userInfoResponse = await fetch(userInfoUrl, {
+    const userInfoResponse = await fetch(AUTH_USERINFO_URI, {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
@@ -159,7 +150,7 @@ export default Service.extend({
       this.sessionStore.set('refresh_token', authResult.refresh_token);
       this.sessionStore.set('id_token', authResult.id_token);
       this.sessionStore.set('expires_at', expiresAt);
-      Ember.notifyPropertyChange(this, 'session')
+      this.notifyPropertyChange('session')
       this.setupExpirationTimeout()
     }
   },
@@ -188,7 +179,7 @@ export default Service.extend({
     const delay = expiresAt.getTime() - Date.now()
     if (delay > 0) {
       this._expirationTimeout = setTimeout(() => {
-        Ember.notifyPropertyChange(this, 'session.expires_at')
+        this.notifyPropertyChange('session.expires_at')
       }, delay)
     }
   }
