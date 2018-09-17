@@ -1,18 +1,20 @@
 {{!-- The following component displays Ember's default welcome message. --}}
 {{!-- Feel free to remove this! --}}
 {{screen-title-content version=version}}
-{{outlet}}
-{{#if needsRefresh}}
-  <div class="refresh-action">
-    <p class="legend">Une nouvelle version a été détectée, ce serait bien de rafraichir la page :)</p>
-    <button {{action "refreshWindow"}}>
-      Mise à jour
-    </button>
-  </div>
-{{/if}}
-{{notify-container}}
+<main>
+  {{outlet}}
+  {{#if needsRefresh}}
+    <div class="refresh-action">
+      <p class="legend">Une nouvelle version a été détectée, ce serait bien de rafraichir la page :)</p>
+      <button {{action "refreshWindow"}}>
+        Mise à jour
+      </button>
+    </div>
+  {{/if}}
+</main>
 <footer>
   <a href="https://github.com/Floby/dumbal.flo.by" target="_blank">
     <img src="/images/github-icon.svg" alt="Source Code" rel="source-code">
   </a>
 </footer>
+{{notify-container}}

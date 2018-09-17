@@ -9,7 +9,7 @@ html, body {
   font-size: 20px;
 }
 
-html, body {
+html, body, body > .ember-view {
   height: 100%;
 }
 
@@ -17,7 +17,25 @@ html, body {
   user-select: none;
 }
 
+body > .ember-view {
+  display: flex;
+  flex-direction: column;
+  > main {
+    margin-top: 5em;
+    flex-grow: 100;
+  }
+  > footer {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+  > header {
+    position: fixed;
+    width: 100%;
+  }
+}
+
 .screen-title {
+  box-shadow: 0em .05em 0.3em gray;
   border-top: 0.6em solid @darkPrimaryColor;
   border-top: 0.6em solid var(--dark-primary-color);
   background-color: @primaryColor;
@@ -177,11 +195,9 @@ html, body {
 
 
 footer {
-  position: fixed;
   width: 100%;
-  left: 0;
-  bottom: 0;
-  padding: 0.2em;
+  padding: 0.3em 0;
+  margin-top: 0.3em;
   text-align: center;
   img[rel=source-code] {
     height: 1em;
