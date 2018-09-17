@@ -3,12 +3,18 @@ import { inject } from '@ember/service'
 
 export default Route.extend({
   auth: inject(),
-  async beforeModel (params) {
+  notify: inject(),
+  async beforeModel (transition) {
     const auth = this.get('auth')
-    await auth.tryToAuthenticate(params.queryParams)
+    try {
+      await auth.tryToAuthenticate(transition.queryParams)
+    } catch (error) {
+      this.get('notify').warning('Désolé, il y a eu une erreur au moment de login')
+      this.transitionTo('index')
+    }
   },
 
-  async model (params) {
+  async model () {
     const auth = this.get('auth')
     if (auth.get('userInfo')) {
       return auth.get('userInfo')

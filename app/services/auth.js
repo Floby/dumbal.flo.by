@@ -58,6 +58,9 @@ export default Service.extend({
             code_verifier: verifier
           })
         })
+        if (response.status >= 400) {
+          throw Error('Could not login')
+        }
         const reply = await response.json()
         if (reply.access_token && reply.id_token) {
           this.setSession(reply)
