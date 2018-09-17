@@ -89,8 +89,12 @@ export default Service.extend({
         refresh_token: session.refresh_token
       })
     })
-    const body = await response.json()
-    this.setSession(Object.assign({ refresh_token: session.refresh_token }, body))
+    if (response.status >= 400) {
+      this.sessionStore.remove('refresh_token')
+    } else {
+      const body = await response.json()
+      this.setSession(Object.assign({ refresh_token: session.refresh_token }, body))
+    }
   },
 
   async fetchUserInfo(accessToken) {
