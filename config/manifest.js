@@ -11,16 +11,23 @@ module.exports = function(/* environment, appConfig */) {
     start_url: "/",
     display: "standalone",
     background_color: "#fff",
-    theme_color: "#fff",
+    theme_color: "#9c27b0",
     icons: [
       {
-        src: "/logo.svg",
-        sizes: "540x540",
-        type: "image/svg"
-      }
+        src: '/assets/icons/appicon-32.png',
+        sizes: `32x32`,
+        targets: ['favicon']
+      },
+      ...[192, 280, 512].map((size) => ({
+        src: `/assets/icons/appicon-${size}.png`,
+        sizes: `${size}x${size}`
+      }))
     ],
     ms: {
-      tileColor: '#fff'
+      tileColor: '#9c27b0'
+    },
+    apple: {
+      statusBarStyle: 'black'
     }
   };
 }

@@ -11,7 +11,16 @@ module.exports = function(defaults) {
         'fonts/**/*',
       ]
    },
-    // Add options here
+   'ember-cli-image-transformer': {
+     images: [{
+       inputFilename: 'images/logo.svg',
+       outputFileName: 'appicon-',
+       convertTo: 'png',
+       destination: 'assets/icons/',
+       sizes: [32, 192, 280, 512]
+     }]
+   }
+   // Add options here
   });
 
   // Use `app.import` to add additional libraries to the generated

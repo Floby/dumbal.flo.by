@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-91.428571"
-     inkscape:cy="560"
+     inkscape:zoom="1.4"
+     inkscape:cx="52.589547"
+     inkscape:cy="194.52743"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,30 +54,22 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-138.24998)">
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot3721"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:Confessions;letter-spacing:0px;word-spacing:0px;fill:#7b1fa2;fill-opacity:1;stroke:none;-inkscape-font-specification:Confessions;font-stretch:normal;font-variant:normal;"
-       transform="matrix(6.4339301,0,0,4.6487019,-642.54463,-423.72337)"><flowRegion
-         id="flowRegion3723"
-         style="fill:#7b1fa2;fill-opacity:1;-inkscape-font-specification:Confessions;font-family:Confessions;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;"><rect
-           id="rect3725"
-           width="68.571426"
-           height="51.428577"
-           x="94.285713"
-           y="117.14286"
-           style="fill:#7b1fa2;fill-opacity:1;-inkscape-font-specification:Confessions;font-family:Confessions;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
-         id="flowPara3727">♠</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       id="flowRoot4542"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.61042428,0,0,0.61042428,715.3105,269.91217)"><flowRegion
-         id="flowRegion4544"><rect
-           id="rect4546"
-           width="768.57141"
-           height="371.42856"
-           x="-1131.4286"
-           y="-97.14286" /></flowRegion><flowPara
-         id="flowPara4548"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ff4081;fill-opacity:1">Dumbal</flowPara></flowRoot>  </g>
+    <circle
+       style="fill:#fcffff;fill-opacity:1;stroke:none;stroke-width:21.34774208;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path9"
+       cx="79.375"
+       cy="217.62498"
+       r="77.508156" />
+    <g
+       aria-label="♠"
+       transform="matrix(5.7484597,0,0,4.1534295,-565.63138,-358.03997)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:Confessions;-inkscape-font-specification:Confessions;letter-spacing:0px;word-spacing:0px;fill:#7b1fa2;fill-opacity:1;stroke:none"
+       id="flowRoot3721">
+      <path
+         d="m 112.25391,123.39258 c 1.22395,2.17448 3.24218,5.05859 6.05468,8.65234 3.08594,3.61979 4.34251,5.76861 4.7461,6.54297 0.50781,1.10677 0.76172,2.18099 0.76172,3.22266 v 0.78125 c 0,2.17448 -1.05469,3.88672 -3.16407,5.13672 -0.6901,0.28645 -1.45182,0.42968 -2.28515,0.42968 -2.00521,0 -3.6263,-1.4388 -4.86328,-4.3164 h -0.82032 v 0.23437 c 0,3.6849 0.54037,6.50391 1.6211,8.45703 h -4.19922 v -0.11718 c 1.10677,-1.96615 1.66016,-4.80469 1.66016,-8.51563 l -0.0586,-0.0586 h -0.74219 l -0.91796,1.71875 c -1.10677,1.73177 -2.48698,2.59765 -4.14063,2.59765 -2.43489,0 -4.14713,-1.36068 -5.13672,-4.08203 -0.12329,-0.54602 -0.17578,-0.91389 -0.17578,-1.42578 v -0.89844 c 0,-2.38281 1.21745,-4.89583 3.65234,-7.53906 4.10157,-5.02604 6.73178,-8.61328 7.89063,-10.76172 l 0.0586,-0.0586 z"
+         id="path11"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccsscsccscccccccsccscccc" />
+    </g>
+  </g>
 </svg>
