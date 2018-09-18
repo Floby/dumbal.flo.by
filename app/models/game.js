@@ -31,22 +31,29 @@ export default EmberObject.extend({
       return
     }
     const roundCount = this.get('roundCount')
-    const lastScores = this.get('players').map((player) => {
-      return {
+    const lastScores = this.get('players')
+      .map((player) => ({
         player,
         lastScore: player.get('scores').objectAt(roundCount - 1)
-      }
-    })
-    const lastBiggestScore = lastScores.sortBy('lastScore').pop()
-    if (!lastBiggestScore.player.get('isOut')) {
-      return lastBiggestScore.player
-    }
+      }))
+      .sortBy('lastScore')
+    const worstLastScore = lastScores.get('lastObject.lastScore')
+    const inPlayersWithWorstScore = lastScores
+      .filterBy('player.isIn')
+      .filterBy('lastScore', worstLastScore)
 
-    const biggestScorePlayer = this.get('players')
-      .filterBy('isIn')
-      .sortBy('score')
-      .lastObject
-    return biggestScorePlayer
+    if (inPlayersWithWorstScore.length === 1) {
+      return inPlayersWithWorstScore.firstObject.player
+    } else if (inPlayersWithWorstScore.length === 0) {
+      return this.get('players')
+        .filterBy('isIn')
+        .sortBy('score')
+        .lastObject
+    } else {
+      return inPlayersWithWorstScore
+        .sortBy('player.score')
+        .get('lastObject.player')
+    }
   }),
 
   init () {
