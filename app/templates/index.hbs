@@ -15,6 +15,7 @@
                 {{game.name}}
               </h5>
               {{player-inline-list players=game.players}}
+              <div class="date-indicator">{{moment-from-now game.startDate}}</div>
             {{/link-to}}
             <div class="actions">
               <span class="archive" {{action "archiveGame" game}}>
