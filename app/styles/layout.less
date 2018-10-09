@@ -196,12 +196,33 @@ body > .ember-view {
 
 
 footer {
-  width: 100%;
-  padding: 0.3em 0;
+  padding: 0.3em 1em;
   margin-top: 0.3em;
-  text-align: center;
   img[rel=source-code] {
     height: 1em;
     opacity: 0.6;
+  }
+  .github-logo {
+    display: inline-block;
+    position: relative;
+    transition: 600ms ease-out;
+    left: 0;
+  }
+  .hidden-dev-tools {
+    color: @primaryTextColor;
+    color: var(--primary-text-color);
+    font-size: 0.7em;
+    opacity: 0.8;
+  }
+
+  &.locked {
+    .hidden-dev-tools {
+      opacity: 0;
+    }
+    .github-logo {
+      //left: -40%;
+      transform: rotateZ(360deg);
+      left: calc(50% - (1em/2));
+    }
   }
 }

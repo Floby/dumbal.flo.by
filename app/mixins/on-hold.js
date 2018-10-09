@@ -6,7 +6,7 @@ export default Mixin.create({
   onHoldTimeout: null,
   onHoldDelay: '1s',
   didInsertElement () {
-    this.$()
+    this.$(this.onHoldSelector)
       .on('mousedown', () => this.holdStart())
       .on('touchstart', () => this.holdStart())
       .on('mouseup', () => this.holdStop())
