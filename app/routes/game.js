@@ -24,8 +24,9 @@ export default Route.extend({
   actions: {
     addRound(scores) {
       const game = this.modelFor('game')
+      const playerNames = game.get('players').map(({ name }) => name)
       try {
-        game.addRound(scores)
+        game.addRound(scores.getProperties(playerNames))
         this.get('game').save(game)
         this.transitionTo('game', game);
       } catch (error) {
