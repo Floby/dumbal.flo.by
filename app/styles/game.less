@@ -4,7 +4,7 @@
   -webkit-tap-highlight-color: transparent; 
   .players {
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
     .player {
       margin-top: 1em;
       padding: 0 1em;
@@ -56,19 +56,25 @@
 
     .score-input {
       float: right;
+      position: relative;
       margin-right: 1em;
       visibility: hidden;
       .round-score {
         width: 2em;
+        line-height: 0px;
       }
       .input-sign {
-        transition: all .2s ease-out, visibility 0ms;
         display: inline-block;
+        position: absolute;
+        top: -0.2em;
+        right: 2.8em;
         border-radius: 1em;
         width: 1em;
         height: 1em;
         text-align: center;
         padding: 0.3em;
+
+        transition: all .2s ease-out, visibility 0ms;
         background: lightgray;
         border: 1px solid black;
         color: white;
