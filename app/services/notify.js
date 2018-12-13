@@ -33,5 +33,12 @@ export default Service.extend({
 
   vibrateWarn () {
     vibrate([50, 30, 50])
+  },
+
+  vibratePlayerOut () {
+    vibrate([200, 50, 50, 10, 50, 10, 50])
+  },
+  vibratePlayerWin () {
+    vibrate([1000])
   }
 });

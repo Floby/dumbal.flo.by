@@ -19,6 +19,12 @@ export default EmberObject.extend({
     return this.get('roundCount') + 1
   }),
 
+  inPlayerCount: computed('players.@each.isIn', function () {
+    return this.get('players')
+      .filter((player) => player.get('isIn'))
+      .length
+  }),
+
   isOver: computed('players.@each.isOut', function () {
     const playing = this.get('players').map((player) => {
       return player.get('isOut') ? 0 : 1

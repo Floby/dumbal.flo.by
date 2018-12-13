@@ -26,8 +26,17 @@ export default Route.extend({
       const game = this.modelFor('game')
       const playerNames = game.get('players').map(({ name }) => name)
       try {
+        const beforePlayerCount = game.get('inPlayerCount')
         game.addRound(scores.getProperties(playerNames))
         this.get('game').save(game)
+        const afterPlayerCount = game.get('inPlayerCount')
+        if (afterPlayerCount < beforePlayerCount) {
+          if (afterPlayerCount === 1) {
+            this.get('notify').vibratePlayerWin()
+          } else {
+            this.get('notify').vibratePlayerOut()
+          }
+        }
         this.transitionTo('game', game);
       } catch (error) {
         if (error instanceof DumbalError) {
