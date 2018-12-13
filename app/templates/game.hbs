@@ -16,7 +16,7 @@
             {{fa-icon "star" class="winner-icon"}}
           {{/if}}
         </strong>
-        {{mat-input type="number" name=player.name class="round-score" placeholder=0 value=(get newRoundScores player.name)}}
+        {{score-input name=player.name value=(get newRoundScores player.name)}}
       </div>
     {{/each}}
   </div>

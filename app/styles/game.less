@@ -3,7 +3,8 @@
   user-select: none;
   -webkit-tap-highlight-color: transparent; 
   .players {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     .player {
       margin-top: 1em;
       padding: 0 1em;
@@ -30,7 +31,7 @@
         .score {
           background: pink;
         }
-        .round-score {
+        .score-input {
           visibility: hidden;
         }
       }
@@ -53,15 +54,47 @@
       }
     }
 
-    .round-score {
+    .score-input {
       float: right;
       margin-right: 1em;
-      width: 2em;
       visibility: hidden;
+      .round-score {
+        width: 2em;
+      }
+      .input-sign {
+        transition: all .2s ease-out, visibility 0ms;
+        display: inline-block;
+        border-radius: 1em;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        padding: 0.3em;
+        background: lightgray;
+        border: 1px solid black;
+        color: white;
+        transform: rotateZ(0);
+      }
+
+      &.positive {
+        .input-sign {
+          background: @inAccentColor;
+          border-color: @accentColor;
+          color: @accentColor;
+        }
+      }
+      &.negative {
+        .input-sign {
+          background: @accentColor;
+          border-color: @accentColor;
+          color: @inAccentColor;
+          font-weight: bold;
+          transform: rotateZ(-360deg);
+        }
+      }
     }
 
     &.round {
-      .round-score {
+      .score-input {
         visibility: visible;
       }
     }

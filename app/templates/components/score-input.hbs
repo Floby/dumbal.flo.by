@@ -1,0 +1,9 @@
+<a rel="input-sign" class="input-sign" {{action 'toggleSign'}}>{{sign}}</a>
+{{mat-input
+  type="number"
+  name=player.name
+  class="round-score"
+  placeholder=0
+  value=inputValue
+  onBlur=(action 'onInputBlur')
+}}
