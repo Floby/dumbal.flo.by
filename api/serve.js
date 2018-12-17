@@ -5,6 +5,8 @@ const Path = require('path')
 const express = require('express')
 const compression = require('compression')
 const morgan = require('morgan')
+const Config = require('./config')
+const enforce = require('express-sslify')
 const Api = require('./index')
 
 const DIST_DIR = Path.resolve(__dirname, '../dist')
@@ -17,6 +19,9 @@ function startRegular () {
   server.use(morgan('dev'))
   server.use(compression())
 
+  if (Config.get('FEAT_PREFER_HTTPS')) {
+    server.use(enforce.HTTPS({ trustProtoHeader: true }))
+  }
   server.use('/api', Api())
 
   server.use(express.static(DIST_DIR))

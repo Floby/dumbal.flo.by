@@ -71,6 +71,7 @@
     "dotenv": "^6.0.0",
     "envie": "^1.5.0",
     "es6-error": "^4.1.1",
+    "express-sslify": "^1.2.0",
     "faker": "^4.1.0",
     "fastboot-app-server": "^1.1.2-beta.1",
     "joi": "^13.5.2",
