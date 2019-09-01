@@ -8,7 +8,7 @@ export default Route.extend({
       return null
     }
     try {
-      const parentGame = this.get('game').getById(params.from)
+      const parentGame = this.game.getById(params.from)
       return parentGame
     } catch (error) {
       console.error('Could not load parent game', error) // eslint-disable-line no-console
@@ -19,7 +19,7 @@ export default Route.extend({
   actions: {
     startNewGame (name, playerNames, isLeague) {
       const parent = this.modelFor(this.routeName)
-      const game = this.get('game').createNewGame(name, playerNames, parent, isLeague)
+      const game = this.game.createNewGame(name, playerNames, parent, isLeague)
       this.transitionTo('game', game)
     }
   }

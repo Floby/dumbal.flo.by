@@ -12,6 +12,6 @@ module('Integration | Component | anim-count', function(hooks) {
 
     await render(hbs`{{anim-count value=8}}`);
 
-    assert.equal(this.element.textContent.trim(), '8');
+    assert.dom(this.element).hasText('8');
   });
 });

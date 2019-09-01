@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Service from '@ember/service';
 import { computed } from '@ember/object';
 
@@ -22,13 +23,13 @@ export default Service.extend({
   profileLinkPresenceOut () {
     this.profileLinkPresences.popObject()
   },
-  profileLinkPresence: computed.alias('profileLinkPresences.lastObject'),
+  profileLinkPresence: alias('profileLinkPresences.lastObject'),
 
-  navigationType: computed.alias('navigations.lastObject'),
+  navigationType: alias('navigations.lastObject'),
 
-  primaryTitle: computed.alias('titles.lastObject'),
+  primaryTitle: alias('titles.lastObject'),
   secondaryTitle: computed('titles.{@each,length}', function () {
-    const titles = this.get('titles')
+    const titles = this.titles
     return titles[titles.length-2]
   })
 });

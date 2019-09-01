@@ -15,7 +15,7 @@ export default Service.extend({
 
   checkVersion: async function () {
     const versionUrl = '/api/version'
-    const version = this.get('version')
+    const version = this.version
     try {
       const response = await fetch(versionUrl)
       const { version: currentVersion } = await response.json()

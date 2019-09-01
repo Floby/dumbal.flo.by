@@ -18,8 +18,8 @@ export default Service.extend({
   lastUpdated: null,
   init () {
     this._super(...arguments)
-    this.sessionStore = this.get('localStore').namespace('auth');
-    this.stateStore = this.get('localStore').namespace('authstate');
+    this.sessionStore = this.localStore.namespace('auth');
+    this.stateStore = this.localStore.namespace('authstate');
     this.refreshCheckInterval = setInterval(() => this.checkRefresh(), ms('30 seconds'))
     this.setupExpirationTimeout()
     this.checkRefresh()
@@ -75,7 +75,7 @@ export default Service.extend({
 
   async checkRefresh () {
     const session = this.getSession()
-    const shouldRefresh = !this.get('isAuthenticated') && session.refresh_token
+    const shouldRefresh = !this.isAuthenticated && session.refresh_token
     if (!shouldRefresh) {
       return
     }
@@ -127,7 +127,7 @@ export default Service.extend({
   },
 
   isAuthenticated: computed('session.access_token', 'isExpired', function() {
-    return this.get('session.access_token') && !this.get('isExpired')
+    return this.get('session.access_token') && !this.isExpired;
   }),
 
   session: computed(function () {

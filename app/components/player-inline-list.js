@@ -6,7 +6,7 @@ export default Component.extend({
   tagName: 'ul',
 
   playerDisplay: computed('players.{@each,length}', function () {
-    const players = this.get('players');
+    const players = this.players;
     return players.map((player, index) => {
       let prefix = ''
       let suffix = ''

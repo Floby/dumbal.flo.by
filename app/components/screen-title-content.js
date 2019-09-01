@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import Component from '@ember/component';
 import { computed } from '@ember/object'
 import { inject }  from '@ember/service'
@@ -8,9 +9,9 @@ export default Component.extend(OnHold, {
   tagName: 'header',
   classNames: ['screen-title'],
   screenTitle: inject(),
-  primaryTitle: computed.alias('screenTitle.primaryTitle'),
-  secondaryTitle: computed.alias('screenTitle.secondaryTitle'),
-  profileLinkPresence: computed.alias('screenTitle.profileLinkPresence'),
+  primaryTitle: alias('screenTitle.primaryTitle'),
+  secondaryTitle: alias('screenTitle.secondaryTitle'),
+  profileLinkPresence: alias('screenTitle.profileLinkPresence'),
   navigationHome: computed('screenTitle.navigationType', function () {
     return this.get('screenTitle.navigationType') === 'home'
   }),
@@ -18,11 +19,11 @@ export default Component.extend(OnHold, {
     return this.get('screenTitle.navigationType') === 'back'
   }),
   hasNavigation: computed('navigationBack', 'navigationHome', function () {
-    return this.get('navigationBack')  || this.get('navigationHome')
+    return this.navigationBack  || this.navigationHome;
   }),
 
   onHold () {
-    const version = this.get('version')
+    const version = this.version
     window.alert(`Version courante : ${version}`)
   },
 

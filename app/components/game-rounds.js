@@ -24,7 +24,7 @@ export default Component.extend({
 
   actions: {
     toggleShowGameRounds () {
-      this.set('showGameRounds', !this.get('showGameRounds'))
+      this.set('showGameRounds', !this.showGameRounds)
     }
   }
 });

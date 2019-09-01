@@ -4,12 +4,12 @@ import { inject } from '@ember/service';
 export default Route.extend({
   game: inject(),
   model () {
-    return this.get('game').list()
+    return this.game.list();
   },
 
   actions: {
     archiveGame (game) {
-      this.get('game').archiveGame(game)
+      this.game.archiveGame(game)
     }
   }
 });

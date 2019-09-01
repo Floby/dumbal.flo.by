@@ -9,18 +9,18 @@ export default Component.extend({
   positionalParams: ['title'],
 
   didRender () {
-    this.get('screenTitle').pushTitle(this.get('title'))
-    if (this.get('navigation')) {
-      this.get('screenTitle.navigations').pushObject(this.get('navigation'))
+    this.screenTitle.pushTitle(this.title)
+    if (this.navigation) {
+      this.get('screenTitle.navigations').pushObject(this.navigation)
     }
-    this.get('screenTitle').profileLinkPresenceIn(Boolean(this.get('profileLink')))
+    this.screenTitle.profileLinkPresenceIn(Boolean(this.profileLink))
   },
 
   didDestroyElement () {
-    this.get('screenTitle').popTitle(this.get('title'))
-    if (this.get('navigation')) {
-      this.get('screenTitle.navigations').popObject(this.get('navigation'))
+    this.screenTitle.popTitle(this.title)
+    if (this.navigation) {
+      this.get('screenTitle.navigations').popObject(this.navigation)
     }
-    this.get('screenTitle').profileLinkPresenceOut()
+    this.screenTitle.profileLinkPresenceOut()
   }
 });

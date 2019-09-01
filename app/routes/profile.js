@@ -5,17 +5,17 @@ export default Route.extend({
   auth: inject(),
   notify: inject(),
   async beforeModel (transition) {
-    const auth = this.get('auth')
+    const auth = this.auth
     try {
-      await auth.tryToAuthenticate(transition.queryParams)
+      await auth.tryToAuthenticate(transition.to.queryParams || {})
     } catch (error) {
-      this.get('notify').warning('Désolé, il y a eu une erreur au moment de login')
+      this.notify.warning('Désolé, il y a eu une erreur au moment de login')
       this.transitionTo('index')
     }
   },
 
   async model () {
-    const auth = this.get('auth')
+    const auth = this.auth
     if (auth.get('userInfo')) {
       return auth.get('userInfo')
     } else {
@@ -25,7 +25,7 @@ export default Route.extend({
 
   actions: {
     async refreshLogin () {
-      const auth = this.get('auth')
+      const auth = this.auth
       await auth.login()
     }
   }

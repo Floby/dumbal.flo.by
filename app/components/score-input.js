@@ -17,25 +17,25 @@ export default Component.extend({
   },
 
   assignValue () {
-    const value = this.get('value')
+    const value = this.value
     this.set('inputValue', value)
   },
 
   sign: computed('positive', function () {
-    return this.get('positive') ? '+' : '—'
+    return this.positive ? '+' : '—';
   }),
 
   onActualValueChange: observer('value', function () {
-    const absoluteInputValue = Math.abs(this.get('inputValue'))
-    const absoluteValue = Math.abs(this.get('value'))
+    const absoluteInputValue = Math.abs(this.inputValue)
+    const absoluteValue = Math.abs(this.value)
     if (absoluteValue !== absoluteInputValue) {
       this.assignValue()
     }
   }),
 
   onInputValueChange: observer('inputValue', function () {
-    const inputValue = Number(this.get('inputValue'))
-    const positive = this.get('positive')
+    const inputValue = Number(this.inputValue)
+    const positive = this.positive
     if (inputValue > 0) {
       const value = inputValue * (positive ? 1 : -1)
       this.set('value', value)
@@ -43,7 +43,7 @@ export default Component.extend({
       this.set('value', inputValue)
     }
 
-    if (this.get('value') < 0) {
+    if (this.value < 0) {
       this.set('positive', false)
     } else {
       this.set('positive', true)
@@ -51,8 +51,8 @@ export default Component.extend({
   }),
 
   onSignChange: observer('positive', function () {
-    const positive = this.get('positive')
-    const inputValue = Number(this.get('inputValue')) || 0
+    const positive = this.positive
+    const inputValue = Number(this.inputValue) || 0
     if (inputValue > 0) {
       const value = inputValue * (positive ? 1 : -1)
       this.set('value', value)
@@ -66,8 +66,8 @@ export default Component.extend({
       this.toggleProperty('positive')
     },
     onInputBlur () {
-      if (!this.get('positive') && this.get('value') < 0) {
-        this.set('inputValue', Math.abs(this.get('value')))
+      if (!this.positive && this.value < 0) {
+        this.set('inputValue', Math.abs(this.value))
       }
     }
   }

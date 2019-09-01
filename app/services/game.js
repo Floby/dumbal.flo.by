@@ -10,7 +10,7 @@ export default Service.extend({
   loaded: null,
   init () {
     this._super(...arguments)
-    this.gameStore = this.get('localStore').namespace('games.v0')
+    this.gameStore = this.localStore.namespace('games.v0')
     this.loaded = {}
   },
   list () {

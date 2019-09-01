@@ -10,7 +10,7 @@ export default Component.extend({
   name: null,
 
   hasValue: computed('value', function () {
-    const value = this.get('value')
+    const value = this.value
     return Boolean(value) || value === 0
   }),
 });

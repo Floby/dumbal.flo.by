@@ -16,13 +16,13 @@ export default Controller.extend({
     this.set('players', [])
     this.set('newGameName', null)
     this.set('newPlayerName', null)
-    this.set('gameNamePlaceholder', this.get('randomNames').pop())
+    this.set('gameNamePlaceholder', this.randomNames.pop())
     this.set('isLeague', false)
   },
 
   initFromGame: observer('model', function () {
     this.initFromEmpty();
-    const game = this.get('model')
+    const game = this.model
     if (!game) return;
     this.set('newGameName', `Revanche de ${game.get('name')}`)
     const players = game.get('players').map((player) => player.get('name'))
@@ -30,7 +30,7 @@ export default Controller.extend({
   }),
 
   hasEnoughPlayers: computed('players.length', 'newPlayerName', function () {
-    const newPlayerName = (this.get('newPlayerName') || '').trim()
+    const newPlayerName = (this.newPlayerName || '').trim()
     const playerCount = this.get('players.length')
     if (playerCount > 1) {
       return true
@@ -47,22 +47,22 @@ export default Controller.extend({
       if (!playerName) {
         return
       }
-      this.get('players').pushObject(playerName.trim())
+      this.players.pushObject(playerName.trim())
       this.set('newPlayerName', null)
     },
     removePlayer(playerName) {
-      this.get('players').removeObject(playerName)
+      this.players.removeObject(playerName)
     },
     createGame(name, playerNames) {
-      let newPlayerName = (this.get('newPlayerName') || '').trim();
+      let newPlayerName = (this.newPlayerName || '').trim();
       let gameName = (name || '').trim()
       if (!gameName) {
-        gameName = this.get('gameNamePlaceholder')
+        gameName = this.gameNamePlaceholder
       }
       if (newPlayerName) {
-        this.send('startNewGame', gameName, playerNames.concat([newPlayerName.trim()]), this.get('isLeague'))
+        this.send('startNewGame', gameName, playerNames.concat([newPlayerName.trim()]), this.isLeague)
       } else {
-        this.send('startNewGame', gameName, playerNames, this.get('isLeague'))
+        this.send('startNewGame', gameName, playerNames, this.isLeague)
       }
       this.init()
     }

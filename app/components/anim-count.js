@@ -9,17 +9,17 @@ export default Component.extend({
 
   init () {
     this._super(...arguments)
-    this.set('displayValue', this.get('value'))
+    this.set('displayValue', this.value)
   },
 
   onValueChange: observer('value', function () {
-    const previousValue = this.get('displayValue')
-    const nextValue = this.get('value')
+    const previousValue = this.displayValue
+    const nextValue = this.value
     animate(
       { value: previousValue },
       { value: nextValue },
       {
-        duration: this.get('duration'),
+        duration: this.duration,
         easing: 'easeOut',
         step: ({ value }) => {
           this.set('displayValue', Math.floor(value));

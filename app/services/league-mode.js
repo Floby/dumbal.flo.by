@@ -5,22 +5,22 @@ export default Service.extend({
   LEAGUE_MODE_THEME_COLOR: 'black',
   init () {
     this._super(...arguments)
-    const document = this.get('currentDocument')
+    const document = this.currentDocument
     const themeColorMetaElement = document.querySelector('meta[name=theme-color]')
     this.set('themeColorInitialValue', themeColorMetaElement.content)
     this.themeColorMetaElement = themeColorMetaElement
   },
   enable () {
-    const document = this.get('currentDocument')
+    const document = this.currentDocument
     const body = document.body
     addClass(body, 'league-mode')
     this.themeColorMetaElement.setAttribute('content', this.LEAGUE_MODE_THEME_COLOR)
   },
   disable () {
-    const document = this.get('currentDocument')
+    const document = this.currentDocument
     const body = document.body
     removeClass(body, 'league-mode')
-    this.themeColorMetaElement.setAttribute('content', this.get('themeColorInitialValue'))
+    this.themeColorMetaElement.setAttribute('content', this.themeColorInitialValue)
   }
 })
 

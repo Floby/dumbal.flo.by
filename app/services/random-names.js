@@ -10,7 +10,7 @@ export default Service.extend({
 
   init () {
     this._super(...arguments)
-    this.randomNamesStore = this.get('localStore').namespace('random-names')
+    this.randomNamesStore = this.localStore.namespace('random-names')
     this.pollInterval = setInterval(() => {
       run(() => this.checkPool())
     }, ms('2 hours'))
@@ -18,7 +18,7 @@ export default Service.extend({
   },
 
   checkPool: async function () {
-    if (this.get('checking')) {
+    if (this.checking) {
       return
     }
     this.set('checking', true)

@@ -17,7 +17,7 @@ export default Service.extend({
       type: 'warn',
       content
     })
-    this.get('notifications').pushObject(notification)
+    this.notifications.pushObject(notification)
     this.vibrateWarn()
     setTimeout(() => {
       this.expireNotification(notification)
@@ -27,7 +27,7 @@ export default Service.extend({
   expireNotification (notification) {
     run(() => notification.set('removed', true))
     setTimeout(() => {
-      run(() => this.get('notifications').removeObject(notification))
+      run(() => this.notifications.removeObject(notification))
     }, 1000)
   },
 

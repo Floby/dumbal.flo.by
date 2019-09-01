@@ -16,7 +16,7 @@ export default Mixin.create({
   holdStart () {
     this.onHoldTimeout = setTimeout(() => {
       this.onHold()
-    }, ms(this.get('onHoldDelay')))
+    }, ms(this.onHoldDelay))
   },
 
   holdStop () {
