@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import Game, { Player } from 'dumbal-league/models/game'
+import Game from 'dumbal-league/models/game'
 
 module('Unit | Model | game', function(hooks) {
   setupTest(hooks);

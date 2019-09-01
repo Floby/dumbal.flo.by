@@ -25,11 +25,10 @@ export default Component.extend({
     return this.get('positive') ? '+' : '—'
   }),
 
-  onActualValueChange: observer('value', function (...args) {
+  onActualValueChange: observer('value', function () {
     const absoluteInputValue = Math.abs(this.get('inputValue'))
     const absoluteValue = Math.abs(this.get('value'))
     if (absoluteValue !== absoluteInputValue) {
-      console.log('resetting value', absoluteValue, absoluteInputValue)
       this.assignValue()
     }
   }),

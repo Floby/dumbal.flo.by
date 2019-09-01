@@ -28,7 +28,7 @@ function Api () {
     }
   })
 
-  router.get('/random-names', async (req, res, next) => {
+  router.get('/random-names', async (req, res) => {
     const count = Math.min(Number(req.query.count) || 50, 50)
     const randomNames = []
     for (var i = 0; i < count; ++i) {
