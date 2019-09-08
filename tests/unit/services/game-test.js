@@ -35,7 +35,7 @@ module('Unit | Service | game', function(hooks) {
     ];
     expectedOrderNames.slice().reverse().forEach((name) => {
       service.createNewGame(name, playerNames)
-      sandbox.clock.tick('00:05:00')
+      sandbox.clock.tick(5 * 60 * 1000)
     })
     // When
     const orderedNames = service.list().mapBy('name')

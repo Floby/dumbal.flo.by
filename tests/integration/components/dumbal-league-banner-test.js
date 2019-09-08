@@ -11,16 +11,6 @@ module('Integration | Component | dumbal-league-banner', function(hooks) {
     // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`{{dumbal-league-banner}}`);
-
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#dumbal-league-banner}}
-        template block text
-      {{/dumbal-league-banner}}
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText('Ligue officielle de Dumbal');
   });
 });

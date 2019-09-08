@@ -11,16 +11,6 @@ module('Integration | Component | dumbal-footer', function(hooks) {
     // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`{{dumbal-footer}}`);
-
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#dumbal-footer}}
-        template block text
-      {{/dumbal-footer}}
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText('Ah ça t\'en bouche un coin !');
   });
 });

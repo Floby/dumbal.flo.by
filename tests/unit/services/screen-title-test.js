@@ -10,4 +10,3 @@ module('Unit | Service | screen-title', function(hooks) {
     assert.ok(service);
   });
 });
-

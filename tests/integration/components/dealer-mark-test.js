@@ -11,16 +11,6 @@ module('Integration | Component | dealer-mark', function(hooks) {
     // Handle any actions with this.set('myAction', function(val) { ... });
 
     await render(hbs`{{dealer-mark}}`);
-
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      {{#dealer-mark}}
-        template block text
-      {{/dealer-mark}}
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.equal(this.element.querySelectorAll('span.outer').length, 3)
   });
 });
