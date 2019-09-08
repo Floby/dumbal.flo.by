@@ -6,8 +6,11 @@ export default Route.extend({
   notify: inject(),
   game: inject(),
   leagueMode: inject(),
+  serializer: inject('game-serializer'),
   model: function (params) {
-    return this.game.getById(params.game_id);
+    const game = this.game.getById(params.game_id);
+    console.log(this.serializer.serialize(game))
+    return game
   },
 
   afterModel (model) {

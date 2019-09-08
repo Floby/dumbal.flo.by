@@ -2,17 +2,17 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import Game from 'dumbal-league/models/game'
 
-module('Unit | Serializer | game', function(hooks) {
+module('Unit | Service | game', function(hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let serializer = this.owner.lookup('serializer:game');
+    let serializer = this.owner.lookup('service:game-serializer');
     assert.ok(serializer);
   });
 
   test('it serializes and deserializes a game', function(assert) {
-    let serializer = this.owner.lookup('serializer:game');
+    let serializer = this.owner.lookup('service:game-serializer');
     const parentId = '1d3b97c0-d287-11e9-956d-234cf5021b45'
     const startDate = '2019-09-09T20:30:00.000Z'
     let game = Game.create({

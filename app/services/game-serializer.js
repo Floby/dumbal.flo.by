@@ -1,7 +1,7 @@
-import EmberObject from '@ember/object';
+import Service from '@ember/service';
 import Game from 'dumbal-league/models/game'
 
-export default EmberObject.extend({
+export default Service.extend({
   serialize (game) {
     return JSON.stringify({
       v: 1,
