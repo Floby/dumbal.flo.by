@@ -25,4 +25,7 @@ export default Controller.extend({
   isFinishingRound: computed('router.currentRouteName', function () {
     return this.get('router.currentRouteName') === 'game.round'
   }),
+  isExporting: computed('router.currentRouteName', function () {
+    return this.get('router.currentRouteName') === 'game.export'
+  })
 });

@@ -12,6 +12,7 @@ Router.map(function() {
     path: 'games/:game_id'
   }, function() {
     this.route('round');
+    this.route('export');
   });
   this.route('new-game');
   this.route('profile');

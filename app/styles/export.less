@@ -1,0 +1,44 @@
+.game-export {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  animation: backdrop-blurry 200ms ease-in;
+  animation-fill-mode: both;
+  .game-code {
+    margin: 1em auto;
+    max-width: 75%;
+    height: 20em;
+    animation: fade-in 200ms ease-in 200ms;
+    animation-fill-mode: both;
+  }
+
+  p {
+    margin: 1em;
+    text-align: center;
+    strong {
+      font-weight: bold;
+    }
+  }
+
+}
+
+@keyframes backdrop-blurry {
+  from {
+    background-color: #ffffff00;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    background-color: #ffffff40;
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
