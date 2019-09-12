@@ -117,8 +117,10 @@
     button, a.button {
       transition: background-color 200ms ease-out;
       font-size: 0.6em;
-      background-color: desaturate(lighten(@accentColor, 10%), 60%);
-      background-color: var(--faded-accent-color);
+      --accent-color: desaturate(lighten(@accentColor, 10%), 60%);
+      --accent-color: var(--faded-accent-color);
+      //background-color: desaturate(lighten(@accentColor, 10%), 60%);
+      //background-color: var(--faded-accent-color);
       &[disabled] {
         .disabled-button();
       }
