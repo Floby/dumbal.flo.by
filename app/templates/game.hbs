@@ -39,10 +39,14 @@
 
   {{#if model.roundCount}}
   {{game-rounds game=model}}
-  <div class="dumbal-action">
-    <button class="undo" {{action "removeRound" model.roundCount}} disabled={{if isFinishingRound "disabled"}}>Annuler dernière manche</button>
+  <div class="misc-action">
+    <button class="undo" {{action "removeRound" model.roundCount}} disabled={{if isFinishingRound "disabled"}}>
+      {{fa-icon "undo"}} Annuler la dernière manche
+    </button>
+    {{#link-to 'game.export' class="button export"}}
+      {{fa-icon "qrcode"}} Copier
+    {{/link-to}}
   </div>
   {{/if}}
 </form>
-<LinkTo @route="game.export">export</LinkTo>
 {{outlet}}

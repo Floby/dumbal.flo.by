@@ -107,11 +107,14 @@
   }
 
   .dumbal-action {
-    margin-top: 1em;
+    margin: 2em 1em;
     clear: both;
     text-align: center;
-
-    .undo {
+  }
+  .misc-action {
+    .dumbal-action();
+    text-align: right;
+    button, a.button {
       transition: background-color 200ms ease-out;
       font-size: 0.6em;
       background-color: desaturate(lighten(@accentColor, 10%), 60%);
