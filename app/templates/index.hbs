@@ -1,6 +1,7 @@
 {{screen-title title="Doumbal League" profileLink=true}}
 <div class="new-game-action">
-  {{#link-to 'new-game' (query-params from=null) class="button"}}Nouvelle Partie{{/link-to}}
+  {{#link-to 'copy-game' class="button"}}{{fa-icon 'arrow-circle-down'}} Importer{{/link-to}}
+  {{#link-to 'new-game' (query-params from=null) class="button"}}{{fa-icon 'plus-circle'}} Nouvelle Partie{{/link-to}}
 </div>
 
 <div class="game-list">
