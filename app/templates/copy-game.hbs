@@ -1,0 +1,28 @@
+{{screen-title title="Copier une partie" navigation="back"}}
+{{outlet}}
+
+<div class="copy-game">
+  <div class="scan-preview">
+    {{#unless errorMessage}}
+      <CodeScanner
+         @device={{selectedCam}}
+         @onScanSuccess={{action "parseGame"}}
+         @onDevicesError={{action "deviceError"}}
+         @onDevicesFound={{action (mut cams)}}
+      />
+    {{else}}
+    <div class="error">
+      <p>
+        La caméra elle marche pas :(
+      </p>
+      <div class="detail">
+       {{errorMessage}}
+      </div>
+    </div>
+    {{/unless}}
+  </div>
+  <p class="help">
+    Depuis une partie ouverte sur une autre téléphone, cliquez sur <strong>Copier</strong> et scannez le code qui
+    apparaît avec votre téléphone.
+  </p>
+</div>

@@ -16,6 +16,7 @@ Router.map(function() {
   });
   this.route('new-game');
   this.route('profile');
+  this.route('copy-game');
 });
 
 export default Router;

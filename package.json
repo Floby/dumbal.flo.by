@@ -47,6 +47,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "^7.8.0",
     "ember-resolver": "^4.0.0",
+    "ember-scanner": "^0.3.4",
     "ember-service-worker": "^0.7.1",
     "ember-service-worker-asset-cache": "^0.6.4",
     "ember-service-worker-index": "^0.7.0",
