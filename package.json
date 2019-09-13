@@ -57,7 +57,7 @@
     "eslint-plugin-ember": "^6.2.0",
     "eslint-plugin-node": "^9.0.1",
     "express": "^4.16.3",
-    "glob": "^4.5.3",
+    "glob": "^7.1.4",
     "loader.js": "^4.2.3",
     "moment": "^2.22.2",
     "qunit-dom": "^0.8.4",
