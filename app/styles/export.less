@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   z-index: 5;
-  animation: backdrop-blurry 200ms ease-in;
+  animation: background-opaque .2s ease-in;
   animation-fill-mode: both;
   .game-code {
     margin: 1em auto;
@@ -24,6 +24,13 @@
 
 }
 
+@supports (backdrop-filter: blur(8px)) {
+  .game-export {
+    animation: backdrop-blurry .2s ease-in;
+    animation-fill-mode: both;
+  }
+}
+
 @keyframes backdrop-blurry {
   from {
     background-color: #ffffff00;
@@ -32,6 +39,14 @@
   to {
     background-color: #ffffff40;
     backdrop-filter: blur(8px);
+  }
+}
+@keyframes background-opaque {
+  from {
+    background-color: #ffffff00;
+  }
+  to {
+    background-color: #ffffffbb;
   }
 }
 
