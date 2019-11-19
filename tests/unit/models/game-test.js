@@ -64,4 +64,35 @@ module('Unit | Model | game', function(hooks) {
     // Then
     assert.equal(game.get('dealer.name'), 'A')
   })
+  test('it adds an endDate when adding the last round', function (assert) {
+    // Given
+    const players = ['A', 'B', 'C']
+    const game = Game.create() // When
+    players.forEach((name) => game.addPlayer(name))
+    // When
+    game.addRound({
+      A: 20,
+      B: 18,
+      C: -3
+    })
+    game.addRound({
+      A: 25,
+      B: 25,
+      C: -3
+    })
+    // Then
+    assert.equal(game.get('endDate'), null)
+
+    // When
+    game.addRound({
+      A: 80,
+      B: 99,
+      C: -1
+    })
+    const expectedEndDate = moment.utc().format();
+
+    // Then
+    assert.equal(game.get('isOver'), true)
+    assert.equal(game.get('endDate'), expectedEndDate)
+  })
 });

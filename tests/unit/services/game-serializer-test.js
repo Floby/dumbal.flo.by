@@ -15,11 +15,13 @@ module('Unit | Service | game', function(hooks) {
     let serializer = this.owner.lookup('service:game-serializer');
     const parentId = '1d3b97c0-d287-11e9-956d-234cf5021b45'
     const startDate = '2019-09-09T20:30:00.000Z'
+    const endDate = '2019-09-09T21:01:00.000Z'
     let game = Game.create({
       id: 'f1b0bd20-d28a-11e9-ab3f-23eee39b2b41',
       name: 'Hello',
       parentId,
       startDate,
+      endDate,
       isLeague: true
     })
     game.addPlayer('Alice')
@@ -69,6 +71,7 @@ module('Unit | Service | game', function(hooks) {
         p: parentId,
         l: 1,
         s: startDate,
+        e: endDate,
         ps: ['Alice', 'Bob', 'Mickey', 'Joe'],
         rs: [
           [20,  19,  18,  17,  17],
@@ -84,6 +87,7 @@ module('Unit | Service | game', function(hooks) {
     assert.equal(parsedGame.name, game.name)
     assert.equal(parsedGame.id, game.id)
     assert.equal(parsedGame.startDate, game.startDate)
+    assert.equal(parsedGame.endDate, game.endDate)
     assert.equal(parsedGame.parentId, game.parentId)
     assert.equal(parsedGame.isLeague, game.isLeague)
     game.players.forEach((player, i) => {

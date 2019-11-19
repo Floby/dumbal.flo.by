@@ -11,6 +11,7 @@ export default Service.extend({
         ...(game.parentId ? { p: game.parentId } : {}),
         l: game.isLeague ? 1 : 0,
         s: game.startDate,
+        ...(game.endDate ? { e: game.endDate }: {}),
         ps: game.players.map((player) => player.name),
         rs: game.players.map((player) => player.scores.concat([]))
       }
@@ -22,6 +23,7 @@ export default Service.extend({
       name: body.n,
       id: body.id,
       startDate: body.s,
+      endDate: body.e,
       parentId: body.p,
       isLeague: Boolean(body.l)
     })

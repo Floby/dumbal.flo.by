@@ -16,7 +16,11 @@
                 {{game.name}}
               </h5>
               {{player-inline-list players=game.players}}
-              <div class="date-indicator">{{moment-from-now game.startDate}}</div>
+              {{#if game.endDate}}
+                <div class="date-indicator">terminé {{moment-from-now game.endDate}}</div>
+              {{else}}
+                <div class="date-indicator">démarré {{moment-from-now game.startDate}}</div>
+              {{/if}}
             {{/link-to}}
             <div class="actions">
               <span class="archive" {{action "archiveGame" game}}>

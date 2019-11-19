@@ -8,6 +8,7 @@ export default EmberObject.extend({
   players: null,
   archived: false,
   startDate: null,
+  endGame: null,
   parentId: null,
   roundCount: computed('players.@each.roundCount', function () {
     const rounds = this.players.map((player) => {
@@ -86,6 +87,9 @@ export default EmberObject.extend({
         player.addRound(Number(score) || 0)
       }
     })
+    if (this.get('isOver')) {
+      this.set('endDate', moment.utc().format())
+    }
   },
   removeRound (roundNumber) {
     Object.values(this.players).forEach((player) => {
