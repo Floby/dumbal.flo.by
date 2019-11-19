@@ -38,6 +38,7 @@ export default Service.extend({
     const game = Game.create({
       id: gameId,
       startDate: serializedGame.startDate,
+      endDate: serializedGame.endDate,
       parentId: serializedGame.parentId,
       isLeague: Boolean(serializedGame.isLeague)
     })
@@ -60,6 +61,7 @@ export default Service.extend({
       name: game.get('name'),
       parentId: game.get('parentId'),
       startDate: game.get('startDate'),
+      endDate: game.get('endDate'),
       isLeague: game.get('isLeague'),
       players: game.get('players').map((player) => {
         return {
