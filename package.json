@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "amator": "^1.1.0",
-    "auth0-js": "^9.7.3",
+    "auth0-js": "^9.13.2",
     "broccoli-asset-rev": "^3.0.0",
     "ember-ajax": "^5.0.0",
     "ember-auto-import": "^1.2.19",
